@@ -18,7 +18,7 @@
 <table border="1" cellpadding="5" width="500">
   <tr>
     <td>
-      <img src="../images/35.jpg" width="500" height="400" />
+      <img src="/resources/images/35.jpg" width="500" height="400" />
     </td>
   </tr>
 <form action="/login" method="POST">

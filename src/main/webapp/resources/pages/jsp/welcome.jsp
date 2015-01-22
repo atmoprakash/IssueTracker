@@ -21,8 +21,9 @@
   </tr>
   <tr>
     <td>
-      <img src="../images/logo1.gif" width="500" height="400" />
-    </td></tr>
+      <img src="/resources/images/logo1.gif" width="500" height="400" />
+    </td>
+  </tr>
 </table>
 </body>
 </html>
