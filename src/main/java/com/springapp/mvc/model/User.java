@@ -3,7 +3,7 @@ package com.springapp.mvc.model;
 /**
  * Created by acer on 1/21/2015.
  */
-public class Student {
+public class User {
 
     private String username;
     private String password;

@@ -21,7 +21,7 @@
   </tr>
   <tr>
     <td>
-      <img src="/jsp/logo1.gif" width="500" height="400" />
+      <img src="../images/logo1.gif" width="500" height="400" />
     </td></tr>
 </table>
 </body>
