@@ -12,20 +12,17 @@
   <title>Spring MVC Form Handling</title>
 </head>
 <body>
+<h1> You have successfuly signed in</h1>
 <h2>Submitted Student Information</h2>
-<table>
+<table border="1" cellpadding="5" width="500">
   <tr>
     <td>Name</td>
-    <td>${name}</td>
+    <td>${username}</td>
   </tr>
   <tr>
-  <td>Age</td>
-    <td>${age}</td>
-  </tr>
-  <tr>
-  <td>ID</td>
-    <td>${id}</td>
-  </tr>
+    <td>
+      <img src="/jsp/logo1.gif" width="500" height="400" />
+    </td></tr>
 </table>
 </body>
 </html>

@@ -13,18 +13,36 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class StudentController {
-    @RequestMapping(value = "/student" ,method = RequestMethod.GET)
-    public ModelAndView student(){
-        return new ModelAndView("student","command",new Student());
+    @RequestMapping(value = "/hello" ,method = RequestMethod.GET)
+    public ModelAndView user(){
+        return new ModelAndView("hello","command",new Student());
     }
 
 
-@RequestMapping(value = "/addStudent",method = RequestMethod.POST)
-public String addStudent(@ModelAttribute("SpringWeb")Student student,ModelMap model){
-    model.addAttribute("age",student.getAge());
-    model.addAttribute("name",student.getName());
-    model.addAttribute("id",student.getId());
-    return "result";
+    @RequestMapping(value = "/hello", method = RequestMethod.POST)
+    public String welcome(@ModelAttribute("username") Student user, ModelMap model) {
+
+
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("password", user.getPassword());
+        if (user.getUsername().equals("admin") && user.getPassword().equals("asif")) {
+            return "welcome";
+        }
+        else {
+            return "error";
+        }
+    }
 }
-}
+
+//	Database d= new Database();
+//		boolean result = d.DbConnection(username.getUsername(),username.getPassword());
+//		if (result==true)
+//		{
+//			return "welcome";
+//		}
+//		else
+//		{
+//			return "error";
+
+//}
 
