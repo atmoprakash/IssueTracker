@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>Spring MVC Form Handling </title>
+  <link rel="stylesheet" type="text/css" href="/resources/css/login.css" >
+  <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css" >
 </head>
 <body bg bgcolor="#bdb76b">
 <h1>Hi there. WE ARE ISSUETRACKER.</h1>
