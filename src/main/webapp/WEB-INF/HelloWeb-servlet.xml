@@ -6,11 +6,22 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.issuetracker.mvc.controller"/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.issuetracker.mvc.controller.issuecontroller"/>
+    <context:component-scan base-package="com.issuetracker.mvc.controller.usercontroller"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/resources/pages/jsp/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+    <bean id="issueDao" class="com.issuetracker.mvc.dao.IssueDaoImpl"></bean>
+    <bean id="issueService" class="com.issuetracker.mvc.service.IssueServiceImpl"></bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/eclipsedb"/>
+        <property name="username" value="root"/>
+        <property name="password" value="admin"/>
     </bean>
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
