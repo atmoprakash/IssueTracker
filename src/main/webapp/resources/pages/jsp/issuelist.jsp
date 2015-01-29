@@ -60,14 +60,14 @@
     </tr>
     <c:forEach var="user" items="${issueList}">
       <tr>
-        <td>${user.id}</td>
+        <td>${user.issue_tracker_id}</td>
         <td>${user.issuename}</td>
         <td>${user.servicename}</td>
         <td>${user.issuedate}</td>
         <td>${user.customername}</td>
         <td>${user.createdby}</td>
-        <td><a href="editIssue?id=${user.id}">Edit</a></td>
-        <td><a href="deleteIssue?id=${user.id}">Delete</a></td>
+        <td><a href="editIssue?id=${user.issue_tracker_id}">Edit</a></td>
+        <td><a href="deleteIssue?id=${user.issue_tracker_id}">Delete</a></td>
       </tr>
     </c:forEach>
     <tr><td colspan="7"><a href="registerIssue">Add New Issue</a></td></tr>

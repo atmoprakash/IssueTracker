@@ -15,6 +15,7 @@
   <table border="1">
     <thead>
     <tr>
+      <th>Id</th>
       <th>name</th>
       <th>Username</th>
       <th>password</th>
@@ -22,6 +23,7 @@
     </thead>
     <tbody>
     <tr>
+    <td><input value="${updateUserValue.user_id}" readonly="value" name="user_id"></td></br>
     <td><input type="text" value="${updateUserValue.name}" name="name"></td></br>
     <td><input type="text" value="${updateUserValue.username}" name="username"></td></br>
     <td><input type="text" value="${updateUserValue.password}" name="password"></td></br>

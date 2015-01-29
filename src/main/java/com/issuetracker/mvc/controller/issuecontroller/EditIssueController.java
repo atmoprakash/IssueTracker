@@ -1,7 +1,7 @@
 package com.issuetracker.mvc.controller.issuecontroller;
 
 import com.issuetracker.mvc.model.IssueModel;
-import com.issuetracker.mvc.service.IssueService;
+import com.issuetracker.mvc.service.issueservice.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

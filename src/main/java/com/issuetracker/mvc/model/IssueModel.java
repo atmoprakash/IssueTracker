@@ -6,21 +6,22 @@ package com.issuetracker.mvc.model;
 public class IssueModel {
 
 
-    public int id;
+
+
+    public int issue_tracker_id;
     private  String issuename;
     private String servicename;
     private String issuedate;
     private String customername;
     private String createdby;
 
-    public int getId() {
-        return id;
+    public int getIssue_tracker_id() {
+        return issue_tracker_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIssue_tracker_id(int issue_tracker_id) {
+        this.issue_tracker_id = issue_tracker_id;
     }
-
     public String getIssuename() {
         return issuename;
     }

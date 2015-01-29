@@ -49,7 +49,7 @@
         <tr>
           <td>Issue Id :</td>
           <td>
-            <input  value="${editIssue.id}" readonly="value" name="id" />
+            <input  value="${editIssue.issue_tracker_id}" readonly="value" name="issue_tracker_id" />
           </td>
         </tr>
         <tr>
