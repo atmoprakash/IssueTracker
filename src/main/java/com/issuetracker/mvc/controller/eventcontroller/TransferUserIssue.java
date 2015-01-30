@@ -1,6 +1,6 @@
 package com.issuetracker.mvc.controller.eventcontroller;
 
-import com.issuetracker.mvc.service.eventservice.EventService;
+import com.issuetracker.mvc.service.eventservices.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
