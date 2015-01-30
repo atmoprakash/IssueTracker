@@ -1,15 +1,43 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.springapp.mvc.controller"/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.issuetracker.mvc.controller.issuecontroller"/>
+    <context:component-scan base-package="com.issuetracker.mvc.controller.usercontroller"/>
+    <context:component-scan base-package="com.issuetracker.mvc.controller.eventcontroller"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/resources/pages/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/eclipsedb"/>
+        <property name="username" value="root"/>
+        <property name="password" value="admin"/>
+    </bean>
+    <bean id="userDao" class="com.issuetracker.mvc.dao.userDao.UserDaoImpl"></bean>
+    <bean id="userService" class="com.issuetracker.mvc.service.userservice.UserServiceImpl"></bean>
+
+    <bean id="eventDao" class="com.issuetracker.mvc.dao.eventDao.EventDaoImpl"></bean>
+    <bean id="eventService" class="com.issuetracker.mvc.service.eventservice.EventServiceImpl"></bean>
+
+    <bean id="issueDaoImpl" class="com.issuetracker.mvc.dao.issueDao.IssueDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="updateIssueController" class="com.issuetracker.mvc.controller.issuecontroller.UpdateIssueController">
+        <constructor-arg ref="issueService"/>
+    </bean>
+    <bean id="issueService" class="com.issuetracker.mvc.service.issueservice.IssueServiceImpl">
+    </bean>
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+
+    <mvc:annotation-driven />
 
 </beans>
