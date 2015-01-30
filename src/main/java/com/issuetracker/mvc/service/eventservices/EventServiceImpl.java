@@ -1,4 +1,4 @@
-package com.issuetracker.mvc.service.eventservice;
+package com.issuetracker.mvc.service.eventservices;
 
 import com.issuetracker.mvc.dao.eventDao.EventDao;
 import com.issuetracker.mvc.model.AssignEvent;
