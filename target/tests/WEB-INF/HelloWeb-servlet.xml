@@ -9,6 +9,7 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.issuetracker.mvc.controller.issuecontroller"/>
     <context:component-scan base-package="com.issuetracker.mvc.controller.usercontroller"/>
+    <context:component-scan base-package="com.issuetracker.mvc.controller.eventcontroller"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/resources/pages/jsp/"/>
@@ -22,8 +23,10 @@
         <property name="password" value="admin"/>
     </bean>
     <bean id="userDao" class="com.issuetracker.mvc.dao.userDao.UserDaoImpl"></bean>
-
     <bean id="userService" class="com.issuetracker.mvc.service.userservice.UserServiceImpl"></bean>
+
+    <bean id="eventDao" class="com.issuetracker.mvc.dao.eventDao.EventDaoImpl"></bean>
+    <bean id="eventService" class="com.issuetracker.mvc.service.eventservice.EventServiceImpl"></bean>
 
     <bean id="issueDaoImpl" class="com.issuetracker.mvc.dao.issueDao.IssueDaoImpl">
         <property name="dataSource" ref="dataSource"/>

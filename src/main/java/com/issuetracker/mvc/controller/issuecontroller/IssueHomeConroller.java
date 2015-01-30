@@ -28,7 +28,7 @@ public class IssueHomeConroller {
     @RequestMapping("/getIssueList")
     public ModelAndView getUserList(){
         List<IssueModel> issueList= issueService.getUserList();
-        return new ModelAndView("issuelist","issueList",issueList);
+        return new ModelAndView("assignIssueList","issueList",issueList);
     }
 
     @RequestMapping(value = "/insertIssue",method = RequestMethod.POST)

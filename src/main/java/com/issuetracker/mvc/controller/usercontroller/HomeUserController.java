@@ -1,6 +1,8 @@
 package com.issuetracker.mvc.controller.usercontroller;
 
+import com.issuetracker.mvc.model.AssignEvent;
 import com.issuetracker.mvc.model.User;
+import com.issuetracker.mvc.service.eventservice.EventService;
 import com.issuetracker.mvc.service.userservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,19 +24,23 @@ import java.util.List;
 public class HomeUserController {
     @Autowired
     UserService userService;
+    @Autowired
+    EventService eventService;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView all(@ModelAttribute("username") User user, ModelMap model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
         HttpSession session1 = request.getSession();
 
         if (session1.getAttribute("result") != null) {
-
+            User us=(User)session1.getAttribute("result");
                 List<User> userList = userService.getUserList();
-                return new ModelAndView("welcome", "username", userList);
+                List<AssignEvent> assignedEvent=eventService.getUserAssignedList(us.getUser_id());
+//                return new ModelAndView("welcome", "username", userList);
+                return new ModelAndView("eventAssignList", "assigndetail", assignedEvent);
 
             }
             else{
-                return new ModelAndView("error");
+                return new ModelAndView("login");
             }
         }
     }

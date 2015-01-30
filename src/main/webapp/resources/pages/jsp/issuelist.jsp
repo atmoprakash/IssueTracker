@@ -49,7 +49,7 @@
 
   <table border="1">
     <tr>
-      <td class="heading">User Id</td>
+      <td class="heading">Issue Registered Id</td>
       <td class="heading">Issue Name</td>
       <td class="heading">Service Name</td>
       <td class="heading">Issue Date</td>

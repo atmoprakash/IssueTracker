@@ -55,7 +55,8 @@ public class UserDaoImpl implements UserDao{
         String sql = "select * from user where username=? and password=?";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new Object[]{u,p},new UserRowMapper());
-        return userList.get(0);
+            return userList.get(0);
+
     }
 
     @Override
