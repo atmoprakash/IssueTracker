@@ -23,7 +23,7 @@ public class EventDaoImpl implements EventDao {
     @Override
     public List<IssueModel> getUserAssignedList(Integer id) {
         List userList=new ArrayList();
-        String sql="SELECT t.issuename,t.servicename,t.issuedate,e.assigned_date FROM issue_tracker t,issue_event e\n" +
+        String sql="SELECT t.issuename,t.servicename,t.issuedate,e.assigned_date,e.issue_event_id FROM issue_tracker t,issue_event e\n" +
                 "WHERE t.issue_tracker_id=e.issue_tracker_id AND e.user_id="+id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new EventRowMapper());

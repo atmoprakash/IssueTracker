@@ -63,7 +63,7 @@
         <td>${event.assigned_date}</td>
 
 
-        <td><a href="/showUserToTransferIssue?event_id=${event.issue_tracker_id}">Assign Issue to Other User</a></td>
+        <td><a href="/showUserToTransferIssue?event_id=${event.issue_event_id}">Assign Issue to Other User</a></td>
       </tr>
     </c:forEach>
     <tr>

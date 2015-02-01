@@ -16,6 +16,7 @@ public class EventRowMapper implements RowMapper<IssueModel> {
         issueModel.setServicename(rs.getString("servicename"));
         issueModel.setIssuedate(rs.getString("issuedate"));
         issueModel.setAssigned_date(rs.getString("assigned_date"));
+        issueModel.setIssue_event_id(rs.getInt("issue_event_id"));
         return issueModel;
     }
 }
