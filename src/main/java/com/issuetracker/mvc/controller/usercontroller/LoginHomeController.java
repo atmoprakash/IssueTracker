@@ -21,6 +21,7 @@ import java.sql.SQLException;
 public class LoginHomeController {
     @Autowired
     UserService userService;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView user() {
         return new ModelAndView("login");
@@ -30,27 +31,13 @@ public class LoginHomeController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String welcome(@ModelAttribute("username") User user, ModelMap model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
         {
-            User result=userService.checkUser(user.getUsername(),user.getPassword());
-            if(result!=null){
-                session.setAttribute("result",result);
-            return "redirect:/home";
-        }else {
+            User result = userService.checkUser(user.getUsername(), user.getPassword());
+            if (result != null) {
+                session.setAttribute("result", result);
+                return "redirect:/eventHome";
+            } else {
                 return "redirect:/login";
             }
         }
-//        session = request.getSession();
-//        DatabaseQuery q=new DatabaseQuery();
-//        Integer mainUserid = q.QueryLogin(user.getUsername(), user.getPassword());
-//
-//        if (mainUserid!=null) {
-//            session.setAttribute("userid",mainUserid);
-//            return "redirect:home";
-//
-//        } else {
-//            return "login";
-//
-//        }
-
     }
 }
-
