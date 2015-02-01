@@ -48,15 +48,22 @@
 
   <table border="1">
     <tr>
-      <td class="heading">Issue Event Id</td>
-      <td class="heading">Remarks</td>
+      <td class="heading">Issue Name</td>
+      <td class="heading">service Name</td>
+      <td class="heading">Issue-Date</td>
+      <td class="heading">Assigned-Date</td>
       <td class="heading">Action</td>
     </tr>
+
     <c:forEach var="event" items="${assigndetail}">
       <tr>
-        <td>${event.issue_event_id}</td>
-        <td>${event.remarks}</td>
-        <td><a href="/showUserToTransferIssue?event_id=${event.issue_event_id}">Assign Issue to Other User</a></td>
+        <td>${event.issuename}</td>
+        <td>${event.servicename}</td>
+        <td>${event.issuedate}</td>
+        <td>${event.assigned_date}</td>
+
+
+        <td><a href="/showUserToTransferIssue?event_id=${event.issue_tracker_id}">Assign Issue to Other User</a></td>
       </tr>
     </c:forEach>
     <tr>
