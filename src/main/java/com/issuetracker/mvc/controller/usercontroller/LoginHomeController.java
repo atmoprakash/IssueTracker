@@ -32,6 +32,8 @@ public class LoginHomeController {
         {
             User result=userService.checkUser(user.getUsername(),user.getPassword());
             if(result!=null){
+              String userName=  result.getName();
+                session.setAttribute("userName",userName);
                 session.setAttribute("result",result);
             return "redirect:/home";
         }else {

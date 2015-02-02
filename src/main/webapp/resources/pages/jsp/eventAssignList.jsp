@@ -53,6 +53,7 @@
       <td class="heading">Issue-Date</td>
       <td class="heading">Assigned-Date</td>
       <td class="heading">Action</td>
+
     </tr>
 
     <c:forEach var="event" items="${assigndetail}">
@@ -63,13 +64,17 @@
         <td>${event.assigned_date}</td>
 
 
-        <td><a href="/showUserToTransferIssue?event_id=${event.issue_event_id}">Assign Issue to Other User</a></td>
+        <td><a href="/showUserToTransferIssue?event_id=${event.issue_event_id}&issue_date=${event.issuedate}">Assign Issue to Other User</a></td>
+        <td>
+          <a href="/solve?event_id=${event.issue_event_id}">Solve</a>
+        </td>
       </tr>
     </c:forEach>
     <tr>
 
     <td rowspan="2"><a href="registerIssue">Register Issue</a></td>
     <td rowspan="2"><a href="/getIssueList">See Issue List</a></td>
+      <td rowspan="2"><a href="/issueTrackList">view Issue Track List</a></td>
     </tr>
   </table>
 

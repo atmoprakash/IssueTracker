@@ -57,7 +57,7 @@
       <tr>
         <td>${user.user_id}</td>
         <td>${user.username}</td>
-        <td><a href="transferUserIssue?user_id=${user.user_id}">Select</a></td>
+        <td><a href="transferUserIssue?user_id=${user.user_id}&name=${user.name}&date=${asignDate}">Select</a></td>
 
       </tr>
     </c:forEach>
