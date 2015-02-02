@@ -19,6 +19,7 @@ public class AssignEventController {
     @RequestMapping(value="/assignEvent")
     public String assignIssueUser(@RequestParam Integer user_id,HttpServletRequest request, HttpSession session){
         Integer issue_id=(Integer)session.getAttribute("issue_id");
+        session.setAttribute("user_id",user_id);
         eventService.insertData(user_id,issue_id);
         return "redirect:home";
     }
