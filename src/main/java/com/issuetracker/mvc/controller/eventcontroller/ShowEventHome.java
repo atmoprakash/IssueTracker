@@ -27,6 +27,7 @@ public class ShowEventHome {
     @Autowired
     EventService eventService;
 
+
     @RequestMapping(value = "/eventHome", method = RequestMethod.GET)
     public ModelAndView all(@ModelAttribute("username") User user, ModelMap model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
         HttpSession session1 = request.getSession();

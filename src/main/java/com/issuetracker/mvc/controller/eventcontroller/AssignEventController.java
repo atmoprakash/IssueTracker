@@ -21,6 +21,6 @@ public class AssignEventController {
         Integer issue_id=(Integer)session.getAttribute("issue_id");
         session.setAttribute("user_id",user_id);
         eventService.insertData(user_id,issue_id);
-        return "redirect:home";
+        return "redirect:eventHome";
     }
 }

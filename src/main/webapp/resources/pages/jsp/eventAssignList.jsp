@@ -77,27 +77,54 @@
       </ul>
     </div>
   </div>
+<h2>IssueTracker</h2>
+  <b> Register Issue  </b>
+  <div>
+    <form method="post" action="/insertIssue" >
+      <table>
+        <tr>
+          <td class="heading">Issue Name</td>
+          <td class="heading">Service Company</td>
+          <td class="heading">Customer Name</td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="issuename" name="issuename" required="" /></td>
+          <td><input type="text" placeholder="servicename" name="servicename" required=""/></td>
+          <td><input type="text" placeholder="customername" name="customername" required=""/></td>
+          <td><input type="submit" value="Submit"> </td>
+        </tr>
 
-  <b>Issues To Solve</b>
+
+      </table>
+    </form>
+  </div>
+<br/><br/>
+  <b>Issues To Solve By You</b>
   <table border="1">
     <tr>
+      <td class="heading">SN</td>
       <td class="heading">Issue Name</td>
-      <td class="heading">service Name</td>
-      <td class="heading">Issue-Date</td>
-      <td class="heading">Assigned-Date</td>
-      <td class="heading">Action</td>
+      <td class="heading">Company Related</td>
+      <td class="heading">Issue-Date Registered</td>
+      <td class="heading">Issue Assigned To You</td>
+      <td colspan="2" class="heading">Action</td>
     </tr>
 
-    <c:forEach var="event" items="${assigndetail}">
+
+        <c:forEach var="event" items="${assigndetail}">
+          <%! int sn=1; %>
       <tr>
+        <td><%=sn%></td>
         <td>${event.issuename}</td>
         <td>${event.servicename}</td>
         <td>${event.issuedate}</td>
         <td>${event.assigned_date}</td>
 
 
-        <td><a href="/showUserToTransferIssue?event_id=${event.issue_tracker_id}">Assign Issue to Other User</a></td>
+        <td><h5><a href="/showUserToTransferIssue?event_id=${event.issue_event_id}">Transfer Issue to Other User</a></h5></td>
+        <td><h5><a href="/showUserToTransferIssue?event_id=${event.issue_tracker_id}">Solve</a></h5></td>
       </tr>
+          <% sn++; %>
     </c:forEach>
 
   </table>

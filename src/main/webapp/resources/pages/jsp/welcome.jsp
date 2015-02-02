@@ -80,6 +80,24 @@
       </ul>
     </div>
   </div>
+  <h1>Add New Users To The System</h1>
+  <div>
+  <form method="post" action="/add">
+  <table>
+    <tr>
+      <td class="heading">Name</td>
+      <td class="heading">Username</td>
+      <td class="heading">Password</td>
+    </tr>
+    <tr>
+      <td><input type="text"  placeholder="name" name="name" required=""> </td>
+      <td><input type="text" placeholder="username" name="username" required=""> </td>
+      <td><input type="password" placeholder=" password" name="password" required=""> </td>
+      <td><input type="submit" value="Add User"> </td>
+    </tr>
+</table>
+  </form>
+  </div>
 
 <h2>esewa new Members</h2>
 <table border="1">
@@ -113,7 +131,7 @@
 
   </tbody>
 </table>
-<br>
-<a href="/add"><button>Register New Users</button></a>
+<br/>
+  </center>
 </body>
 </html>

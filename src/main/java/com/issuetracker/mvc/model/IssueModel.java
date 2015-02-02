@@ -12,6 +12,16 @@ public class IssueModel {
     private String createdby;
     private String assigned_date;
 
+    public int getIssue_event_id() {
+        return issue_event_id;
+    }
+
+    public void setIssue_event_id(int issue_event_id) {
+        this.issue_event_id = issue_event_id;
+    }
+
+    private int issue_event_id;
+
     public String getAssigned_date() {
         return assigned_date;
     }
