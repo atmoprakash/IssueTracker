@@ -106,7 +106,7 @@
         <td>${user.user_id}</td>
         <td>${user.name}</td>
         <td>${user.username}</td>
-        <td><a href="assignEvent?user_id=${user.user_id}">Select</a></td>
+        <td><a href="assignEvent?user_id=${user.user_id}&username=${user.name}">Select</a></td>
 
       </tr>
     </c:forEach>

@@ -6,8 +6,6 @@
 <html>
 <head>
   <title>IssueTracker</title>
-  <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" >
   <style>
     #next {
       position: absolute;
@@ -36,97 +34,48 @@
   </style>
 </head>
 <body>
-
-
 <center>
-  <div class="navbar navbar-inverse">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/add">Add User</a>
-      <a class="navbar-brand" href="/home">Show User</a>
-    </div>
-    <div class="navbar-collapse collapse navbar-inverse-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="getIssueList">Show Issues List</a></li>
-        <li><a href="registerIssue">Resister Issues</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Dropdown header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left">
-        <input type="text" class="form-control col-lg-8" placeholder="Search">
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li><a href="/logout">Logout</a></li>
 
-        </li>
-      </ul>
-    </div>
+
+  <div id="next">
+    <a href="logout">Logout</a>
   </div>
-<h2>IssueTracker</h2>
-  <b> Register Issue  </b>
-  <div>
-    <form method="post" action="/insertIssue" >
-      <table>
-        <tr>
-          <td class="heading">Issue Name</td>
-          <td class="heading">Service Company</td>
-          <td class="heading">Customer Name</td>
-        </tr>
-        <tr>
-          <td><input type="text" placeholder="issuename" name="issuename" required="" /></td>
-          <td><input type="text" placeholder="servicename" name="servicename" required=""/></td>
-          <td><input type="text" placeholder="customername" name="customername" required=""/></td>
-          <td><input type="submit" value="Submit"> </td>
-        </tr>
+  <b>Issues To Solve</b>
 
 
-      </table>
-    </form>
-  </div>
-<br/><br/>
-  <b>Issues To Solve By You</b>
+
+
+
   <table border="1">
     <tr>
-      <td class="heading">SN</td>
       <td class="heading">Issue Name</td>
-      <td class="heading">Company Related</td>
-      <td class="heading">Issue-Date Registered</td>
-      <td class="heading">Issue Assigned To You</td>
-      <td colspan="2" class="heading">Action</td>
+      <td class="heading">service Name</td>
+      <td class="heading">Issue-Date</td>
+      <td class="heading">Assigned-Date</td>
+      <td class="heading">Action</td>
+
     </tr>
 
-
-        <c:forEach var="event" items="${assigndetail}">
-          <%! int sn=1; %>
+    <c:forEach var="event" items="${assigndetail}">
       <tr>
-        <td><%=sn%></td>
         <td>${event.issuename}</td>
         <td>${event.servicename}</td>
         <td>${event.issuedate}</td>
         <td>${event.assigned_date}</td>
 
 
-        <td><h5><a href="/showUserToTransferIssue?event_id=${event.issue_event_id}">Transfer Issue to Other User</a></h5></td>
-        <td><h5><a href="/showUserToTransferIssue?event_id=${event.issue_tracker_id}">Solve</a></h5></td>
+        <td><a href="/showUserToTransferIssue?event_id=${event.issue_event_id}&issue_date=${event.issuedate}">Assign Issue to Other User</a></td>
+        <td>
+          <a href="/solve?event_id=${event.issue_event_id}">Solve</a>
+        </td>
       </tr>
-          <% sn++; %>
     </c:forEach>
+    <tr>
 
+    <td rowspan="2"><a href="registerIssue">Register Issue</a></td>
+    <td rowspan="2"><a href="/getIssueList">See Issue List</a></td>
+      <td rowspan="2"><a href="/issueTrackList">view Issue Track List</a></td>
+    </tr>
   </table>
 
 </center>

@@ -1,10 +1,15 @@
 package com.issuetracker.mvc.dao.eventRecordDao;
 
-import com.issuetracker.mvc.model.AssignEvent;
+import com.issuetracker.mvc.model.EventRecord;
+
+import java.util.List;
 
 /**
- * Created by acer on 2/2/2015.
+ * Created by sakshi on 2/1/2015.
  */
 public interface EventRecordDao {
-public void insert(AssignEvent assignEvent,int id);
+    public void insertEventRecord(int issueId,String username,String name,String assignedDate);
+    public void update(int id,String username);
+    public List<EventRecord> getEventRecordList();
+
 }
