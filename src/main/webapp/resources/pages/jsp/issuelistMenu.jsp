@@ -94,6 +94,7 @@
       <td class="heading">Issue Date</td>
       <td class="heading">Customer Name</td>
       <td class="heading">Created By</td>
+      <td class="heading">Issue History</td>
 
 
     </tr>
@@ -105,6 +106,7 @@
         <td>${user.issuedate}</td>
         <td>${user.customername}</td>
         <td>${user.createdby}</td>
+        <td><a href="viewHistory?id=${user.issue_event_id}">View Issue History</a></td>
 
 
       </tr>

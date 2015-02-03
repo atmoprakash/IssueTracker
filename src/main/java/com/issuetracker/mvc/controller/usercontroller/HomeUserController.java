@@ -28,10 +28,10 @@ public class HomeUserController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView all(@ModelAttribute("username") User user, ModelMap model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
-        HttpSession session1 = request.getSession();
 
-        if (session1.getAttribute("result") != null) {
-            User us=(User)session1.getAttribute("result");
+
+        if (session.getAttribute("result") != null) {
+            User us=(User)session.getAttribute("result");
                 List<User> userList = userService.getUserList();
 
 //                List<IssueModel> assignedEvent=eventService.getUserAssignedList(us.getUser_id());

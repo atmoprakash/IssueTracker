@@ -102,6 +102,7 @@
   <b>New Issues Needed To Solve by You</b>
   <table border="1">
     <tr>
+      <td class="heading">Sn</td>
       <td class="heading">Issue Name</td>
       <td class="heading">service Name</td>
       <td class="heading">Issue-Date</td>
@@ -109,9 +110,10 @@
       <td colspan="2" class="heading">Action</td>
 
     </tr>
-
+    <c:set var="count" value="1" scope="page"/>
     <c:forEach var="event" items="${assigndetail}">
       <tr>
+        <td>${count}</td>
         <td>${event.issuename}</td>
         <td>${event.servicename}</td>
         <td>${event.issuedate}</td>
@@ -121,7 +123,9 @@
           <a href="/solve?event_id=${event.issue_event_id}">Solve</a>
         </td>
       </tr>
+      <c:set var="count" value="${count+1}"/>
     </c:forEach>
+
 
   </table>
 

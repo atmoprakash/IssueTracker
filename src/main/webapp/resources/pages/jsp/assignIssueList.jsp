@@ -58,18 +58,35 @@
       <td class="heading">Assign Issue to User</td>
 
     </tr>
-    <c:forEach var="user" items="${issueList}">
+    <tr>
+
+      <td>${1}</td>
+      <td>${last.issuename}</td>
+      <td>${last.servicename}</td>
+      <td>${last.issuedate}</td>
+      <td>${last.customername}</td>
+      <td>${last.createdby}</td>
+      <td><a href="/showUserToAssignIssue?issue_tracker_id=${last.issue_tracker_id}">Assign issue to User</a></td>
+    </tr>
+    <%--<%! int sn=2 ;%>--%>
+    <c:set var="count" value="2" scope="page"/>
+    <c:forEach var="user" items="${issueList}" begin="1">
       <tr>
-        <td>${user.issue_tracker_id}</td>
+
+        <td><c:out value="${count}"/></td>
         <td>${user.issuename}</td>
         <td>${user.servicename}</td>
         <td>${user.issuedate}</td>
         <td>${user.customername}</td>
         <td>${user.createdby}</td>
-        <td><a href="/showUserToAssignIssue?issue_tracker_id=${user.issue_tracker_id}">Assign issue to User</a></td>
+     <c:set var="count" value="${count+1}"/>
+        </c:forEach>
+
 
       </tr>
-    </c:forEach>
+
+
+
   </table>
 
 </center>

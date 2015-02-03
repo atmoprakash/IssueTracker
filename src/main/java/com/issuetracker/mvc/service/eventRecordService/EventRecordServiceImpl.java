@@ -44,4 +44,9 @@ public class EventRecordServiceImpl implements EventRecordService {
     public List<EventRecord> checkEventId(Integer id) {
         return eventRecordDao.checkEventId(id);
     }
+
+    @Override
+    public List<EventRecord> getHistory(Integer id) {
+        return eventRecordDao.getHistory(id);
+    }
 }

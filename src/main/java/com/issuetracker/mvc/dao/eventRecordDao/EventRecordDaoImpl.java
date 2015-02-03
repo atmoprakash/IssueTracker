@@ -76,4 +76,13 @@ public class EventRecordDaoImpl implements EventRecordDao{
        checkEventList= jdbcTemplate.query(sql,new EventRecordCheckEventIdRowMapper());
         return checkEventList;
     }
+
+    @Override
+    public List<EventRecord> getHistory(Integer id) {
+        List seeHistory=new ArrayList();
+        String sql="select * from event_record where issue_event_id=" +id;
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+        seeHistory=jdbcTemplate.query(sql,new EventRecordCheckEventIdRowMapper());
+        return  seeHistory;
+    }
 }
