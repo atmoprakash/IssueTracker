@@ -37,4 +37,11 @@ public class IssueHomeConroller {
         return "redirect:/getIssueList";
     }
 
+
+    @RequestMapping("/getIssueListMenu")
+    public ModelAndView getUserListMenu(){
+        List<IssueModel> issueList= issueService.getUserList();
+        return new ModelAndView("issuelistMenu","issueList",issueList);
+    }
+
 }

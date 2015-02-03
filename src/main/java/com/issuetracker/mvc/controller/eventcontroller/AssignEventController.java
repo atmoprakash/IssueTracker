@@ -1,7 +1,5 @@
 package com.issuetracker.mvc.controller.eventcontroller;
 
-import com.issuetracker.mvc.dao.eventReocrdDao.EventRecordDao;
-
 import com.issuetracker.mvc.service.eventservices.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +26,6 @@ public class AssignEventController {
         eventService.insertData(user_id,issue_id);
 
 
-        return "redirect:home";
+        return "redirect:eventHome";
     }
 }

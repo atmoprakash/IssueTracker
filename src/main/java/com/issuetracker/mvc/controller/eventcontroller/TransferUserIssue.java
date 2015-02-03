@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 /**
  * Created by acer on 1/29/2015.
@@ -28,7 +27,7 @@ public class TransferUserIssue {
         session.setAttribute("username",name);
         eventRecordService.insertEventRecord(event_id, userName, name,date);
         eventService.updateTransferData(user_id, event_id);
-        return "redirect:home";
+        return "redirect:eventHome";
     }
 //    @RequestMapping("/solve")
 //    public String solveIssue(@RequestParam Integer event_id)

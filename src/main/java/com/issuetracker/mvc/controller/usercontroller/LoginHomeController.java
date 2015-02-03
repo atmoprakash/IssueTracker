@@ -35,7 +35,7 @@ public class LoginHomeController {
               String userName=  result.getName();
                 session.setAttribute("userName",userName);
                 session.setAttribute("result",result);
-            return "redirect:/home";
+            return "redirect:/eventHome";
         }else {
                 return "redirect:/login";
             }

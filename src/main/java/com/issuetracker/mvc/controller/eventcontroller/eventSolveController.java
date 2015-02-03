@@ -1,5 +1,6 @@
 package com.issuetracker.mvc.controller.eventcontroller;
 
+import com.issuetracker.mvc.model.User;
 import com.issuetracker.mvc.service.eventRecordService.EventRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,15 @@ public class eventSolveController {
     @Autowired
     EventRecordService eventRecordService;
     @RequestMapping("/solve")
-    public String eventSolve(@RequestParam int event_id,HttpSession session)
+    public String eventSolve(@RequestParam int event_id ,HttpSession session)
     {
      String name=(String)session.getAttribute("userName");
+        User name1= (User) session.getAttribute("result");
+
+        eventRecordService.insertSelfEventRecord(event_id,name1.getName());
         eventRecordService.update(event_id,name);
-        return "redirect:/eventAssignList";
+       eventRecordService.makeSolvedOne(event_id);
+        return "redirect:/eventHome";
 
     }
 }

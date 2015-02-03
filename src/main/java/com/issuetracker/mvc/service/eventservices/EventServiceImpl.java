@@ -1,8 +1,7 @@
 package com.issuetracker.mvc.service.eventservices;
 
 import com.issuetracker.mvc.dao.eventDao.EventDao;
-
-import com.issuetracker.mvc.model.AssignEvent;
+import com.issuetracker.mvc.model.IssueModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -14,9 +13,8 @@ public class EventServiceImpl implements EventService {
     @Autowired
     EventDao eventDao;
     @Override
-    public List<AssignEvent> getUserAssignedList(Integer id){
-       return eventDao.getUserAssignedList(id);
-
+    public List<IssueModel> getUserAssignedList(Integer id){
+        return eventDao.getUserAssignedList(id);
     }
 
     @Override
@@ -29,8 +27,5 @@ public class EventServiceImpl implements EventService {
         eventDao.updateTransferData(user_id,event_id);
     }
 
-    @Override
-    public AssignEvent getAllInfo() {
-      return   eventDao.getAllInfo();
-    }
+
 }

@@ -1,6 +1,6 @@
 package com.issuetracker.mvc.controller.eventcontroller;
 
-import com.issuetracker.mvc.model.AssignEvent;
+import com.issuetracker.mvc.model.IssueModel;
 import com.issuetracker.mvc.model.User;
 import com.issuetracker.mvc.service.eventservices.EventService;
 import com.issuetracker.mvc.service.userservice.UserService;
@@ -34,7 +34,7 @@ public class ShowEventHome {
 
         if (session1.getAttribute("result") != null) {
             User us=(User)session1.getAttribute("result");
-            List<AssignEvent> assignedEvent=eventService.getUserAssignedList(us.getUser_id());
+            List<IssueModel> assignedEvent=eventService.getUserAssignedList(us.getUser_id());
             return new ModelAndView("eventAssignList", "assigndetail", assignedEvent);
 
         }
