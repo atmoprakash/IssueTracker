@@ -39,4 +39,9 @@ public class EventRecordServiceImpl implements EventRecordService {
     public void insertSelfEventRecord(int id, String name) {
         eventRecordDao.insertSelfEventRecord(id,name);
     }
+
+    @Override
+    public List<EventRecord> checkEventId(Integer id) {
+        return eventRecordDao.checkEventId(id);
+    }
 }

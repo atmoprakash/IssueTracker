@@ -2,6 +2,7 @@ package com.issuetracker.mvc.dao.eventRecordDao;
 
 
 import com.issuetracker.mvc.model.EventRecord;
+import com.issuetracker.mvc.rowmapper.EventRecordCheckEventIdRowMapper;
 import com.issuetracker.mvc.rowmapper.EventRecordRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -65,5 +66,14 @@ public class EventRecordDaoImpl implements EventRecordDao{
         String SolvedTime = sdf.format(dt);
         String remarks="SelfSolved";
         jdbcTemplate.update(sql,new Object[]{id,name,null,SolvedTime,remarks});
+    }
+
+    @Override
+    public List<EventRecord> checkEventId(Integer id) {
+        List checkEventList=new ArrayList();
+        String sql="Select * from event_record where issue_event_id="+id;
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+       checkEventList= jdbcTemplate.query(sql,new EventRecordCheckEventIdRowMapper());
+        return checkEventList;
     }
 }

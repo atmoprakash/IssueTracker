@@ -13,4 +13,5 @@ public interface EventRecordService {
     public List<EventRecord> getEventRecordList();
     public void makeSolvedOne(Integer id);
     public void insertSelfEventRecord(int id,String name);
+    public List<EventRecord> checkEventId(Integer id);
 }
