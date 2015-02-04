@@ -75,7 +75,7 @@ public class UserDaoImpl implements UserDao{
     @Override
     public List<User> getUserList() {
         List userList=new ArrayList();
-        String sql="select * from USER";
+        String sql="select * from user";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;

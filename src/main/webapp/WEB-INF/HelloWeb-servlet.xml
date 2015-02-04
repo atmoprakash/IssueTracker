@@ -20,7 +20,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/eclipsedb"/>
         <property name="username" value="root"/>
-        <property name="password" value="admin"/>
+        <property name="password" value="root"/>
     </bean>
     <bean id="userDao" class="com.issuetracker.mvc.dao.userDao.UserDaoImpl"></bean>
     <bean id="userService" class="com.issuetracker.mvc.service.userservice.UserServiceImpl"></bean>

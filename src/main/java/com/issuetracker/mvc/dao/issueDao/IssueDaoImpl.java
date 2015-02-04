@@ -29,7 +29,7 @@ public class IssueDaoImpl implements IssueDao {
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = sdf.format(dt);
-        String created_by="rewat";
+        String created_by="asif";
         jdbcTemplate.update(sql,new Object[]{user.getIssuename(),user.getServicename(),currentTime,user.getCustomername(),created_by});
     }
 
@@ -62,7 +62,7 @@ public class IssueDaoImpl implements IssueDao {
     @Override
     public List<IssueModel> getUserList() {
         List userList=new ArrayList();
-        String sql="select * from issue_tracker";
+        String sql="select * from issue_tracker ORDER BY issue_tracker_id DESC ";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new IssueRowMapper());
         return userList;
