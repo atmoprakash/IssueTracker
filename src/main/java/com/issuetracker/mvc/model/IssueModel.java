@@ -4,16 +4,38 @@ package com.issuetracker.mvc.model;
  * Created by acer on 1/27/2015.
  */
 public class IssueModel {
-
-
-
-
     public int issue_tracker_id;
     private  String issuename;
     private String servicename;
     private String issuedate;
     private String customername;
     private String createdby;
+    private String assigned_date;
+    private int issue_event_id;
+
+
+
+
+    public int getIssue_event_id() {
+        return issue_event_id;
+    }
+
+    public void setIssue_event_id(int issue_event_id) {
+        this.issue_event_id = issue_event_id;
+    }
+
+
+
+    public String getAssigned_date() {
+        return assigned_date;
+    }
+
+    public void setAssigned_date(String assigned_date) {
+        this.assigned_date = assigned_date;
+    }
+
+
+
 
     public int getIssue_tracker_id() {
         return issue_tracker_id;

@@ -28,7 +28,7 @@ public class UpdateUserController {
     public String updateIssue(@ModelAttribute User user){
         userService.updateData(user);
         return "redirect:/home";
-    }
+}
 
 
 }

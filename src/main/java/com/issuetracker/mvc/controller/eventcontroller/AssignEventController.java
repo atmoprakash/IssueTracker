@@ -1,6 +1,6 @@
 package com.issuetracker.mvc.controller.eventcontroller;
 
-import com.issuetracker.mvc.service.eventservice.EventService;
+import com.issuetracker.mvc.service.eventservices.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +16,16 @@ import javax.servlet.http.HttpSession;
 public class AssignEventController {
     @Autowired
     EventService eventService;
+
     @RequestMapping(value="/assignEvent")
-    public String assignIssueUser(@RequestParam Integer user_id,HttpServletRequest request, HttpSession session){
+    public String assignIssueUser(@RequestParam Integer user_id,@RequestParam String username,HttpServletRequest request, HttpSession session){
         Integer issue_id=(Integer)session.getAttribute("issue_id");
+        session.setAttribute("user_name", username);
+
+        session.setAttribute("user_id",user_id);
         eventService.insertData(user_id,issue_id);
-        return "redirect:home";
+
+
+        return "redirect:eventHome";
     }
 }

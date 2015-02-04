@@ -12,6 +12,8 @@ public class AssignEvent {
     private String assigned_date;
     private String remarks;
 
+
+
     public int getIssue_event_id() {
         return issue_event_id;
     }

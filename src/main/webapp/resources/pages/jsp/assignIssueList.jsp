@@ -70,7 +70,6 @@
 
       </tr>
     </c:forEach>
-    <tr><td colspan="7"><a href="registerIssue">Add New Issue</a></td></tr>
   </table>
 
 </center>

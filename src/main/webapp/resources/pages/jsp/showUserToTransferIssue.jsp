@@ -42,12 +42,7 @@
 
 
   <b>Select User to Transfer Your Issue to Him/Her </b>
-
-
-
-
-
-  <table border="1">
+<table border="1">
     <tr>
       <td class="heading">User Id</td>
       <td class="heading">User Name</td>
@@ -57,7 +52,7 @@
       <tr>
         <td>${user.user_id}</td>
         <td>${user.username}</td>
-        <td><a href="transferUserIssue?user_id=${user.user_id}">Select</a></td>
+        <td><a href="transferUserIssue?user_id=${user.user_id}&name=${user.name}&date=${asignDate}" onclick="return confirm('Are You sure you want to Transfer The Issue ')">Select</a></td>
 
       </tr>
     </c:forEach>

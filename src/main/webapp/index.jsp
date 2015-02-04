@@ -11,6 +11,6 @@
     <title></title>
 </head>
 <body>
-<% response.sendRedirect("registerIssue");%>
+<% response.sendRedirect("login");%>
 </body>
 </html>

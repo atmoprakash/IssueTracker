@@ -26,7 +26,10 @@
     <bean id="userService" class="com.issuetracker.mvc.service.userservice.UserServiceImpl"></bean>
 
     <bean id="eventDao" class="com.issuetracker.mvc.dao.eventDao.EventDaoImpl"></bean>
-    <bean id="eventService" class="com.issuetracker.mvc.service.eventservice.EventServiceImpl"></bean>
+    <bean id="eventService" class="com.issuetracker.mvc.service.eventservices.EventServiceImpl"></bean>
+
+    <bean id="eventRecordDao" class="com.issuetracker.mvc.dao.eventRecordDao.EventRecordDaoImpl"></bean>
+    <bean id="eventRecordService" class="com.issuetracker.mvc.service.eventRecordService.EventRecordServiceImpl"></bean>
 
     <bean id="issueDaoImpl" class="com.issuetracker.mvc.dao.issueDao.IssueDaoImpl">
         <property name="dataSource" ref="dataSource"/>
