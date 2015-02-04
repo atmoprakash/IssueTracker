@@ -58,7 +58,7 @@
       <td class="heading">Assign Issue to User</td>
 
     </tr>
-    <c:forEach var="user" items="${issueList}">
+    <c:forEach var="user" items="${issueList}" begin="1">
       <tr>
         <td>${user.issue_tracker_id}</td>
         <td>${user.issuename}</td>
@@ -66,10 +66,12 @@
         <td>${user.issuedate}</td>
         <td>${user.customername}</td>
         <td>${user.createdby}</td>
-        <td><a href="/showUserToAssignIssue?issue_tracker_id=${user.issue_tracker_id}">Assign issue to User</a></td>
-
+        </c:forEach>
+        <td><a href="/showUserToAssignIssue?issue_tracker_id=${lst.issue_tracker_id}">Assign issue to User</a></td>
       </tr>
-    </c:forEach>
+
+
+
     <tr><td colspan="7"><a href="registerIssue">Add New Issue</a></td></tr>
   </table>
 
