@@ -10,8 +10,7 @@ public class AssignEvent {
     private int user_id;
     private int issue_tracker_id;
     private String assigned_date;
-    private String remarks;
-
+    private Integer solve;
 
 
     public int getIssue_event_id() {
@@ -46,12 +45,13 @@ public class AssignEvent {
         this.assigned_date = assigned_date;
     }
 
-    public String getRemarks() {
-        return remarks;
+    public Integer getSolve() {
+        return solve;
     }
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
+    public void setSolve(Integer solve) {
+        this.solve = solve;
     }
-
 }
+
+
