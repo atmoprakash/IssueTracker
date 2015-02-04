@@ -12,6 +12,10 @@ public class IssueModel {
     private String createdby;
     private String assigned_date;
     private int issue_event_id;
+
+
+
+
     public int getIssue_event_id() {
         return issue_event_id;
     }

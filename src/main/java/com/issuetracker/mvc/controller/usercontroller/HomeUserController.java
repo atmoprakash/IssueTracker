@@ -1,7 +1,5 @@
 package com.issuetracker.mvc.controller.usercontroller;
 
-import com.issuetracker.mvc.model.AssignEvent;
-import com.issuetracker.mvc.model.IssueModel;
 import com.issuetracker.mvc.model.User;
 import com.issuetracker.mvc.service.eventservices.EventService;
 import com.issuetracker.mvc.service.userservice.UserService;
@@ -30,16 +28,16 @@ public class HomeUserController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView all(@ModelAttribute("username") User user, ModelMap model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
-        HttpSession session1 = request.getSession();
 
-        if (session1.getAttribute("result") != null) {
-            User us=(User)session1.getAttribute("result");
+
+        if (session.getAttribute("result") != null) {
+            User us=(User)session.getAttribute("result");
                 List<User> userList = userService.getUserList();
 
-                List<IssueModel> assignedEvent=eventService.getUserAssignedList(us.getUser_id());
+//                List<IssueModel> assignedEvent=eventService.getUserAssignedList(us.getUser_id());
 
-//                return new ModelAndView("welcome", "username", userList);
-                return new ModelAndView("eventAssignList", "assigndetail", assignedEvent);
+              return new ModelAndView("welcome", "username", userList);
+//                return new ModelAndView("eventAssignList", "assigndetail", assignedEvent);
 
             }
             else{

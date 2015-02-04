@@ -27,10 +27,11 @@ public class IssueHomeConroller {
     }
 
     @RequestMapping("/getIssueList")
-    public ModelAndView getUserList( Model model){
-        List<IssueModel> issueList= issueService.getUserList();
-IssueModel issueModel=issueList.get(0);
-        model.addAttribute("lst",issueModel);
+    public ModelAndView getUserList(Model model){
+
+        List<IssueModel> issueList=issueService.getUserList();
+        IssueModel issueModel=issueList.get(0);
+        model.addAttribute("last",issueModel);
         return new ModelAndView("assignIssueList","issueList",issueList);
     }
 
@@ -38,6 +39,13 @@ IssueModel issueModel=issueList.get(0);
     public String insert(@ModelAttribute IssueModel user){
         issueService.insertData(user);
         return "redirect:/getIssueList";
+    }
+
+
+    @RequestMapping("/getIssueListMenu")
+    public ModelAndView getUserListMenu(){
+        List<IssueModel> issueList= issueService.getUserList();
+        return new ModelAndView("issuelistMenu","issueList",issueList);
     }
 
 }

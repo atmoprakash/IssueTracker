@@ -62,7 +62,7 @@ public class IssueDaoImpl implements IssueDao {
     @Override
     public List<IssueModel> getUserList() {
         List userList=new ArrayList();
-        String sql="select * from issue_tracker";
+        String sql="select * from issue_tracker ORDER BY issue_tracker_id DESC ";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new IssueRowMapper());
         return userList;

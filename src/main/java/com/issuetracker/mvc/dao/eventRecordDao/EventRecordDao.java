@@ -1,4 +1,4 @@
-package com.issuetracker.mvc.dao.eventReocrdDao;
+package com.issuetracker.mvc.dao.eventRecordDao;
 
 import com.issuetracker.mvc.model.EventRecord;
 
@@ -11,5 +11,9 @@ public interface EventRecordDao {
     public void insertEventRecord(int issueId,String username,String name,String assignedDate);
     public void update(int id,String username);
     public List<EventRecord> getEventRecordList();
+    public void makeSolvedOne(Integer id);
+    public void insertSelfEventRecord(int id,String name);
+    public List<EventRecord> checkEventId(Integer id);
+    public List<EventRecord> getHistory(Integer id);
 
 }

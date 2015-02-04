@@ -12,10 +12,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-  <title>IssueTracker</title>
   <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" >
   <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" >
   <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" >
+  <title>IssueTracker</title>
   <style>
     body {
       font-size: 20px;
@@ -94,8 +94,9 @@
       <td class="heading">Issue Date</td>
       <td class="heading">Customer Name</td>
       <td class="heading">Created By</td>
-      <td class="heading">Edit</td>
-      <td class="heading">Delete</td>
+      <td class="heading">Issue History</td>
+
+
     </tr>
     <c:forEach var="user" items="${issueList}">
       <tr>
@@ -105,8 +106,9 @@
         <td>${user.issuedate}</td>
         <td>${user.customername}</td>
         <td>${user.createdby}</td>
-        <td><a href="editIssue?id=${user.issue_tracker_id}">Edit</a></td>
-        <td><a href="deleteIssue?id=${user.issue_tracker_id}">Delete</a></td>
+        <td><a href="viewHistory?id=${user.issue_event_id}">View Issue History</a></td>
+
+
       </tr>
     </c:forEach>
   </table>

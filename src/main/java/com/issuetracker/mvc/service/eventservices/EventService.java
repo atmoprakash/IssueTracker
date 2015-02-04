@@ -13,4 +13,5 @@ public interface EventService {
     public List<IssueModel> getUserAssignedList(Integer id);
     public void insertData(Integer user_id,Integer issue_id);
     public void updateTransferData(Integer user_id,Integer event_id);
+
 }

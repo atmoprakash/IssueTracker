@@ -38,35 +38,23 @@
 <center>
 
 
-
   <b>IssueTracker | Registration Form </b>
-
-
-
-  <div>
+<div>
     <form method="post" action="/insertIssue" >
       <table>
         <tr>
-          <td>Issue Name     :</td>
+          <td class="heading">Issue Name</td>
+          <td class="heading">Service Name</td>
+          <td class="heading">Customer Name</td>
+        </tr>
+        <tr>
           <td><input type="text" name="issuename" required="" /></td>
-        </tr>
-        <tr>
-          <td>Service Name   :</td>
           <td><input type="text" name="servicename" required=""/></td>
-        </tr>
-        <tr>
-          <td>Customer Name    :</td>
           <td><input type="text" name="customername" required=""/></td>
+          <td><input type="submit" value="Submit"> </td>
         </tr>
 
-        <tr>
-          <td> </td>
-          <td><input type="submit" value="Register Issue" required=""/></td>
-        </tr>
-        <tr>
 
-          <td colspan="2"><a href="/getIssueList">Click Here to See UserIssue List</a></td>
-        </tr>
       </table>
     </form>
   </div>
