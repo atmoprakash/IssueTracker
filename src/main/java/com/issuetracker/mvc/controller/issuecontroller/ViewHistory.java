@@ -1,5 +1,6 @@
 package com.issuetracker.mvc.controller.issuecontroller;
 
+import com.issuetracker.mvc.model.AssignEvent;
 import com.issuetracker.mvc.model.EventRecord;
 import com.issuetracker.mvc.service.eventRecordService.EventRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,8 @@ public class ViewHistory {
 
     @RequestMapping(value = "/viewHistory")
     public ModelAndView viewHistory(@RequestParam Integer id) {
-        List<EventRecord> seeHistory = eventRecordService.getHistory(id);
+       AssignEvent getEventId=eventRecordService.getEventId(id);
+        List<EventRecord> seeHistory = eventRecordService.getHistory(getEventId.getIssue_event_id());
         return new ModelAndView("issueTrackList", "issueList", seeHistory);
     }
 }
