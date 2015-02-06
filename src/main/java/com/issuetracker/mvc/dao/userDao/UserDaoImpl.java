@@ -90,4 +90,11 @@ public class UserDaoImpl implements UserDao{
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
     }
+
+    @Override
+    public void activeData(Integer id) {
+        String sql = "UPDATE user set status='"+UserStatus.ACTIVE+"' WHERE user_id="+id;
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+        jdbcTemplate.update(sql);
+    }
 }

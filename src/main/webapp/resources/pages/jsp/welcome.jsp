@@ -123,8 +123,14 @@
       <td><c:out value="${user.created_date}" /></td>
       <td><c:out value="${user.status}" /></td>
       <td><a href="/update?id=${user.user_id}">Update</a></td>
-      <td><a href="/delete?id=${user.user_id }" onclick="return confirm('Are You sure you want to Delete ')">Delete</a></td>
-
+      <c:choose>
+        <c:when test="${user.status=='ACTIVE'}">
+      <td><a href="/delete?id=${user.user_id }" onclick="return confirm('Are You sure you want to DEACTIVATE ')">DEACTIVATE</a></td>
+        </c:when>
+        <c:otherwise>
+          <td><a href="/activate?id=${user.user_id }" onclick="return confirm('Are You sure you want to ACTIVATE ')">ACTIVATE</a></td>
+        </c:otherwise>
+      </c:choose>
     </tr>
   </c:forEach>
 
