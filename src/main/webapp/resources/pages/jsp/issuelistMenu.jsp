@@ -54,7 +54,7 @@
     <div class="navbar-collapse collapse navbar-inverse-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="getIssueList">Show Issues List</a></li>
-        <li><a href="issueTrackList">View Event Record</a></li>
+        <%--<li><a href="issueTrackList">View Event Record</a></li>--%>
         <%--<li class="dropdown">--%>
         <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>--%>
         <%--<ul class="dropdown-menu">--%>
@@ -106,7 +106,7 @@
         <td>${user.issuedate}</td>
         <td>${user.customername}</td>
         <td>${user.createdby}</td>
-        <td><a href="viewHistory?id=${user.issue_event_id}">View Issue History</a></td>
+        <td><a href="viewHistory?id=${user.issue_tracker_id}">View Issue History</a></td>
 
 
       </tr>

@@ -22,8 +22,8 @@ public class ViewHistory {
 
     @RequestMapping(value = "/viewHistory")
     public ModelAndView viewHistory(@RequestParam Integer id) {
-
-        List<EventRecord> seeHistory = eventRecordService.getHistory(id);
+       AssignEvent getEventId=eventRecordService.getEventId(id);
+        List<EventRecord> seeHistory = eventRecordService.getHistory(getEventId.getIssue_event_id());
         return new ModelAndView("issueTrackList", "issueList", seeHistory);
     }
 }

@@ -34,6 +34,8 @@ public class ShowEventHome {
 
         if (session1.getAttribute("result") != null) {
             User us=(User)session1.getAttribute("result");
+            String username=us.getUsername();
+            model.addAttribute("name",username);
             List<IssueModel> assignedEvent=eventService.getUserAssignedList(us.getUser_id());
             return new ModelAndView("eventAssignList", "assigndetail", assignedEvent);
 

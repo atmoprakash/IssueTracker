@@ -52,7 +52,7 @@
     <div class="navbar-collapse collapse navbar-inverse-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="getIssueListMenu">Show Issues List</a></li>
-        <li><a href="issueTrackList">View Event Record</a></li>
+        <%--<li><a href="issueTrackList">View Event Record</a></li>--%>
         <%--<li class="dropdown">--%>
           <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>--%>
           <%--<ul class="dropdown-menu">--%>
@@ -70,7 +70,7 @@
         <input type="text" class="form-control col-lg-8" placeholder="Search">
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/eventHome">Home</a></li>
+        <li><a href="/eventHome">Home(${name})</a></li>
         <li><a href="/logout">Logout</a></li>
 
         </li>

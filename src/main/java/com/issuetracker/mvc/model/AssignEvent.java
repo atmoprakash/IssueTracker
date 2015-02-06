@@ -10,7 +10,10 @@ public class AssignEvent {
     private int user_id;
     private int issue_tracker_id;
     private String assigned_date;
+
+
     private Integer solve;
+
 
 
     public int getIssue_event_id() {
@@ -44,7 +47,6 @@ public class AssignEvent {
     public void setAssigned_date(String assigned_date) {
         this.assigned_date = assigned_date;
     }
-
     public Integer getSolve() {
         return solve;
     }
@@ -52,6 +54,8 @@ public class AssignEvent {
     public void setSolve(Integer solve) {
         this.solve = solve;
     }
+
+
+
+
 }
-
-
