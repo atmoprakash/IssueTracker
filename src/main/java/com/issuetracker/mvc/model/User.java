@@ -13,6 +13,16 @@ public class User {
     private String created_by;
     private String status;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+
 
 
     public Integer getUser_id() {
@@ -48,13 +58,6 @@ public class User {
         this.created_by = created_by;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
 
     public String getPassword() {

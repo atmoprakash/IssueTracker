@@ -1,5 +1,6 @@
 package com.issuetracker.mvc.dao.issueDao;
 
+import com.issuetracker.mvc.model.EventStatus;
 import com.issuetracker.mvc.model.IssueModel;
 import com.issuetracker.mvc.rowmapper.IssueRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,13 +25,13 @@ public class IssueDaoImpl implements IssueDao {
     }
     @Override
     public void insertData(IssueModel user) {
-    String sql="Insert into issue_tracker (issuename,servicename,issuedate,customername,createdby)"+ "values(?,?,?,?,?)";
+    String sql="Insert into issue_tracker (issuename,servicename,issuedate,customername,createdby,status)"+ "values(?,?,?,?,?,?)";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = sdf.format(dt);
         String created_by="rewat";
-        jdbcTemplate.update(sql,new Object[]{user.getIssuename(),user.getServicename(),currentTime,user.getCustomername(),created_by});
+        jdbcTemplate.update(sql,new Object[]{user.getIssuename(),user.getServicename(),currentTime,user.getCustomername(),created_by, EventStatus.NEWISSUE.toString()});
     }
 
     @Override
@@ -66,5 +67,19 @@ public class IssueDaoImpl implements IssueDao {
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new IssueRowMapper());
         return userList;
+    }
+
+    @Override
+    public void updateStatus(Integer id) {
+        String sql="update issue_tracker set status='"+EventStatus.PENDING.toString()+"' where issue_tracker_id="+id;
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+        jdbcTemplate.update(sql);
+    }
+
+    @Override
+    public void updateEventStatusSolved(Integer id) {
+        String sql="update issue_tracker set status='"+EventStatus.SOLVED.toString()+"' where issue_tracker_id="+id;
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+        jdbcTemplate.update(sql);
     }
 }

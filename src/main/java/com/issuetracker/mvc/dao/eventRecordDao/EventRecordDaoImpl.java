@@ -7,7 +7,11 @@ import com.issuetracker.mvc.rowmapper.EventHistoryMapper;
 import com.issuetracker.mvc.rowmapper.EventRecordCheckEventIdRowMapper;
 import com.issuetracker.mvc.rowmapper.EventRecordRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -30,6 +34,7 @@ public class EventRecordDaoImpl implements EventRecordDao {
         String query = "update event_record set event_solve_date='" + currentTime + "',remarks='" + remark + "' where issue_event_id=" + id + " AND issue_transfer_to='" + username + "'";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(query);
+
     }
 
     @Override
@@ -61,7 +66,7 @@ public class EventRecordDaoImpl implements EventRecordDao {
 
     @Override
     public void insertSelfEventRecord(int id, String name) {
-        String sql = "insert into event_record(issue_event_id,issue_assigned_to,issue_transfer_to,event_created_date,event_solve_date,remarks)values(?,?,?,?,?)";
+        String sql = "insert into event_record(issue_event_id,issue_assigned_to,issue_transfer_to,event_created_date,event_solve_date,remarks)values(?,?,?,?,?,?)";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -100,5 +105,15 @@ public class EventRecordDaoImpl implements EventRecordDao {
         }else{
             return  null;
         }
+    }
+
+    @Override
+    public AssignEvent getIssueTrackerId(Integer id) {
+       String sql="select issue_tracker_id from issue_event where issue_event_id=:event_id";
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate=new NamedParameterJdbcTemplate(dataSource);
+        SqlParameterSource sqlParameterSource=new MapSqlParameterSource("event_id",id);
+            return  namedParameterJdbcTemplate.queryForObject(sql, sqlParameterSource, BeanPropertyRowMapper.newInstance(AssignEvent.class));
+
+
     }
 }
