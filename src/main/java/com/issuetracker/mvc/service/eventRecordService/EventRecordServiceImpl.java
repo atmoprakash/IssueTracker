@@ -55,4 +55,9 @@ public class EventRecordServiceImpl implements EventRecordService {
     public AssignEvent getEventId(Integer id) {
         return eventRecordDao.getEventId(id);
     }
+
+    @Override
+    public AssignEvent getIssueTrackerId(Integer id) {
+       return eventRecordDao.getIssueTrackerId(id);
+    }
 }

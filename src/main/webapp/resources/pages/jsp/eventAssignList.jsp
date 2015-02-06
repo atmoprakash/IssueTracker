@@ -70,7 +70,7 @@
         <input type="text" class="form-control col-lg-8" placeholder="Search">
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/eventHome">Home(${name})</a></li>
+        <li><a href="/eventHome">Home[ Welcome ${name}]</a></li>
         <li><a href="/logout">Logout</a></li>
 
         </li>

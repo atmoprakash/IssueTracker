@@ -17,5 +17,6 @@ public interface EventRecordDao {
     public List<EventRecord> checkEventId(Integer id);
     public List<EventRecord> getHistory(Integer id);
     public AssignEvent getEventId(Integer id);
+    public AssignEvent getIssueTrackerId(Integer id);
 
 }

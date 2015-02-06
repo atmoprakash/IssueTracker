@@ -14,6 +14,16 @@ public class IssueModel {
     private int issue_event_id;
 
 
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 
 
     public int getIssue_event_id() {

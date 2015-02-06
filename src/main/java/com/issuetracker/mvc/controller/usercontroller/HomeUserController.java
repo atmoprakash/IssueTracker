@@ -35,10 +35,9 @@ public class HomeUserController {
             String name=us.getUsername();
                 List<User> userList = userService.getUserList();
                     model.addAttribute("name",name);
-//                List<IssueModel> assignedEvent=eventService.getUserAssignedList(us.getUser_id());
 
               return new ModelAndView("welcome", "username", userList);
-//                return new ModelAndView("eventAssignList", "assigndetail", assignedEvent);
+
 
             }
             else{
