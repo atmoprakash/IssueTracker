@@ -19,6 +19,7 @@ public class IssueRowMapper implements RowMapper<IssueModel> {
         user.setIssuedate(rs.getString(4));
         user.setCustomername(rs.getString(5));
         user.setCreatedby(rs.getString(6));
+        user.setStatus(rs.getString(7));
         return user;
     }
 

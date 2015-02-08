@@ -49,5 +49,14 @@ public class UserServiceImpl implements UserService{
         return userDao.getUserList();
     }
 
+    @Override
+    public List<User> getUserActiveList() {return userDao.getUserActiveList();
+    }
+
+    @Override
+    public void activeData(Integer id) {
+        userDao.activeData(id);
+    }
+
 
 }

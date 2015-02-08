@@ -1,13 +1,11 @@
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%--
-  Created by IntelliJ IDEA.
-  User: acer
-  Date: 1/21/2015
-  Time: 11:01 AM
-  To change this template use File | Settings | File Templates.
---%>
-<!DOCTYPE html>
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 
 <head>
@@ -157,9 +155,7 @@
   </style>
 
 </head>
-
 <body>
-
 <div class="body"></div>
 <div class="grad"></div>
 <div class="header">
@@ -171,6 +167,10 @@
   <input type="password" placeholder="password" name="password"><br>
   <input type="submit" value="Login">
 </form>
+<div class="footer">
+  <!--LOGIN BUTTON--><input type="submit" name="submit" value="Login" class="button" /><!--END LOGIN BUTTON-->
+  <!--REGISTER BUTTON--><input type="submit" name="submit" value="Register" class="register" /><!--END REGISTER BUTTON-->
+</div>
 
 </body>
 

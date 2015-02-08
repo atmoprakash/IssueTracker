@@ -53,7 +53,7 @@
     </div>
     <div class="navbar-collapse collapse navbar-inverse-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="getIssueList">Show Issues List</a></li>
+        <li class="active"><a href="getIssueListMenu">Show Issues List</a></li>
         <%--<li><a href="issueTrackList">View Event Record</a></li>--%>
         <%--<li class="dropdown">--%>
         <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>--%>
@@ -94,7 +94,9 @@
       <td class="heading">Issue Date</td>
       <td class="heading">Customer Name</td>
       <td class="heading">Created By</td>
+      <td class="heading">Status</td>
       <td class="heading">Issue History</td>
+
 
 
     </tr>
@@ -106,6 +108,14 @@
         <td>${user.issuedate}</td>
         <td>${user.customername}</td>
         <td>${user.createdby}</td>
+        <c:choose>
+          <c:when test="${user.status=='NEWISSUE'}">
+            <td><a href="showUserToAssignIssue?issue_tracker_id=${user.issue_tracker_id}">New Issue.Assign Issue</a> </td>
+          </c:when>
+          <c:otherwise>
+        <td>${user.status}</td>
+          </c:otherwise>
+        </c:choose>
         <td><a href="viewHistory?id=${user.issue_tracker_id}">View Issue History</a></td>
 
 

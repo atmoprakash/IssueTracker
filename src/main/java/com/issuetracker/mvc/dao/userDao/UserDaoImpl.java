@@ -1,6 +1,7 @@
 package com.issuetracker.mvc.dao.userDao;
 
 import com.issuetracker.mvc.model.User;
+import com.issuetracker.mvc.model.UserStatus;
 import com.issuetracker.mvc.rowmapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,8 +27,7 @@ public class UserDaoImpl implements UserDao{
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = sdf.format(dt);
         String created_by="rewat";
-        String status="active";
-        jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),currentTime,created_by,status});
+        jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),currentTime,created_by,UserStatus.ACTIVE.toString()});
 
     }
 
@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public void deleteData(Integer id) {
-        String sql = "delete from user where user_id=" + id;
+        String sql = "UPDATE user set status='"+UserStatus.INACTIVE+"' WHERE user_id="+id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         jdbcTemplate.update(sql);
     }
@@ -79,5 +79,22 @@ public class UserDaoImpl implements UserDao{
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
+    }
+
+    @Override
+    public List<User> getUserActiveList() {
+        String status=UserStatus.ACTIVE.toString();
+        List userList=new ArrayList();
+        String sql="select * from USER where status='"+status+"'";
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+        userList=jdbcTemplate.query(sql,new UserRowMapper());
+        return userList;
+    }
+
+    @Override
+    public void activeData(Integer id) {
+        String sql = "UPDATE user set status='"+UserStatus.ACTIVE+"' WHERE user_id="+id;
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+        jdbcTemplate.update(sql);
     }
 }

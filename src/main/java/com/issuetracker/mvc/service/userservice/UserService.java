@@ -15,6 +15,8 @@ public interface UserService {
     public User checkUser(String u,String p);
     public User getUser(Integer id);
     public List<User> getUserList();
+    public List<User> getUserActiveList();
+    public void activeData(Integer id);
 
 }
 

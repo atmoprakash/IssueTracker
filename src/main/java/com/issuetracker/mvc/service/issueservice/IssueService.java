@@ -14,5 +14,9 @@ public interface IssueService {
     public void deleteData(Integer id);
     public IssueModel getUser(Integer id);
     public List<IssueModel> getUserList();
+    public void updateStatus(Integer id);
+    public void updateEventStatusSolved(Integer id);
+
+
 
 }

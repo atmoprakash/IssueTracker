@@ -10,9 +10,7 @@ public class AssignEvent {
     private int user_id;
     private int issue_tracker_id;
     private String assigned_date;
-
-
-    private Integer solve;
+     private Integer solve;
 
 
 

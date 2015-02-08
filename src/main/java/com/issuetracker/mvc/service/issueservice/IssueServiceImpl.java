@@ -42,4 +42,14 @@ IssueDao issueDao;
     public List<IssueModel> getUserList() {
         return issueDao.getUserList();
     }
+
+    @Override
+    public void updateStatus(Integer id) {
+        issueDao.updateStatus(id);
+    }
+
+    @Override
+    public void updateEventStatusSolved(Integer id) {
+        issueDao.updateEventStatusSolved(id);
+    }
 }
