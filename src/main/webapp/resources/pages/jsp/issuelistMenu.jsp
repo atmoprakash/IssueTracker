@@ -111,12 +111,14 @@
         <c:choose>
           <c:when test="${user.status=='NEWISSUE'}">
             <td><a href="showUserToAssignIssue?issue_tracker_id=${user.issue_tracker_id}">New Issue.Assign Issue</a> </td>
+            <td><a href="#" onclick="return confirm('Not Assigned To any one..So,No history Yet For this issue')">View Issue History</a></td>
           </c:when>
           <c:otherwise>
         <td>${user.status}</td>
+            <td><a href="viewHistory?id=${user.issue_tracker_id}">View Issue History</a></td>
           </c:otherwise>
         </c:choose>
-        <td><a href="viewHistory?id=${user.issue_tracker_id}">View Issue History</a></td>
+
 
 
       </tr>
