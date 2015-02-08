@@ -7,58 +7,171 @@
   Time: 11:01 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <title>Spring MVC Form Handling </title>
-  <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" >
-  <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" >
-  <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" >
+
+  <meta charset="UTF-8">
+
+  <title>IssueTracker Login Form</title>
+
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+    @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
+    body{
+      margin: 0;
+      padding: 0;
+      background: #fff;
+
+      color: #fff;
+      font-family: Arial;
+      font-size: 12px;
+    }
+
+    .body{
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -40px;
+      bottom: -40px;
+      width: auto;
+      height: auto;
+      background-image: url("/resources/images/cool.jpg");
+      background-size: cover;
+      -webkit-filter: blur(5px);
+      z-index: 0;
+    }
+
+    .grad{
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -40px;
+      bottom: -40px;
+      width: auto;
+      height: auto;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    .header{
+      position: absolute;
+      top: calc(50% - 35px);
+      left: calc(50% - 255px);
+      z-index: 2;
+    }
+
+    .header div{
+      float: left;
+      color: #fff;
+      font-family: 'Exo', sans-serif;
+      font-size: 35px;
+      font-weight: 200;
+    }
+
+    .header div span{
+      color: #5379fa !important;
+    }
+
+    .login{
+      position: absolute;
+      top: calc(50% - 75px);
+      left: calc(50% - 50px);
+      height: 150px;
+      width: 350px;
+      padding: 10px;
+      z-index: 2;
+    }
+
+    .login input[type=text]{
+      width: 250px;
+      height: 30px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 2px;
+      color: #fff;
+      font-family: 'Exo', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 4px;
+    }
+
+    .login input[type=password]{
+      width: 250px;
+      height: 30px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 2px;
+      color: #fff;
+      font-family: 'Exo', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 4px;
+      margin-top: 10px;
+    }
+
+    .login input[type=submit]{
+      width: 260px;
+      height: 35px;
+      background: #fff;
+      border: 1px solid #fff;
+      cursor: pointer;
+      border-radius: 2px;
+      color: #a18d6c;
+      font-family: 'Exo', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 6px;
+      margin-top: 10px;
+    }
+
+    .login input[type=submit]:hover{
+      opacity: 0.8;
+    }
+
+    .login input[type=submit]:active{
+      opacity: 0.6;
+    }
+
+    .login input[type=text]:focus{
+      outline: none;
+      border: 1px solid rgba(255,255,255,0.9);
+    }
+
+    .login input[type=password]:focus{
+      outline: none;
+      border: 1px solid rgba(255,255,255,0.9);
+    }
+
+    .login input[type=submit]:focus{
+      outline: none;
+    }
+
+    ::-webkit-input-placeholder{
+      color: rgba(255,255,255,0.6);
+    }
+
+  </style>
 
 </head>
-<%--<body bg bgcolor="#bdb76b">--%>
-<%--<h1>Hi there. WE ARE ISSUETRACKER.</h1>--%>
-<%--<h2>Login Page</h2>--%>
-<%--<h3>Signup Details</h3>--%>
-<%--<table border="1" cellpadding="5" width="500">--%>
-  <%--<tr>--%>
-    <%--<td>--%>
-      <%--<img src="/resources/images/35.jpg" width="500" height="400" />--%>
-    <%--</td>--%>
-  <%--</tr>--%>
-<%--<form action="/login" method="POST">--%>
-  <%--<br/>Username:<input type="text" name="username">--%>
-  <%--<br/>Password:<input type="password" name="password">--%>
-  <%--<br/><input type="submit" value="Submit">--%>
-
-<%--</form>--%>
-<%--</table>--%>
-
 
 <body>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4">
-      <h1 class="text-center login-title">Sign in to Continue</h1>
-      <div class="account-wall">
-        <img class="profile-img" src="/resources/images/photo.png"
-             alt="">
-        <form class="form-signin" action="/login" method="POST">
-          <input type="text" class="form-control" name="username" placeholder="FirstName or Email" required autofocus>
-          <input type="password" class="form-control" name="password" placeholder="Password" required>
-          <label class="checkbox pull-left">
-            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<input name="rememberme" type="checkbox">
-            Remember me
-          </label>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">
-            Sign in</button>
 
-          <%--<a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span> --%>
-        </form>
-      </div>
-      <a href="signup" class="text-center new-account">Not an Member <br>Create an account(SignUp) </a>
-    </div>
-  </div>
+<div class="body"></div>
+<div class="grad"></div>
+<div class="header">
+  <div>Issue Tracker</div>
 </div>
+<br>
+<form class="login" action="/login" method="post" >
+  <input type="text" placeholder="username" name="username"><br>
+  <input type="password" placeholder="password" name="password"><br>
+  <input type="submit" value="Login">
+</form>
+
 </body>
+
 </html>
