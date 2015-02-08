@@ -91,6 +91,7 @@ public class EventRecordDaoImpl implements EventRecordDao {
 
     @Override
     public AssignEvent getEventId(Integer id) {
+
         List<AssignEvent> getEventDetail=new ArrayList<AssignEvent>();
         String sql = "select * from issue_event where issue_tracker_id=" + id;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -101,4 +102,6 @@ public class EventRecordDaoImpl implements EventRecordDao {
             return  null;
         }
     }
+
+
 }
