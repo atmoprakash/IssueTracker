@@ -1,6 +1,8 @@
 package com.issuetracker.mvc.controller.issuecontroller;
 
+import com.issuetracker.mvc.model.EventRecord;
 import com.issuetracker.mvc.model.IssueModel;
+import com.issuetracker.mvc.service.eventRecordService.EventRecordService;
 import com.issuetracker.mvc.service.issueservice.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +32,9 @@ public class IssueHomeConroller {
     public ModelAndView getUserList(Model model){
 
         List<IssueModel> issueList=issueService.getUserList();
+
         IssueModel issueModel=issueList.get(0);
+
         model.addAttribute("last",issueModel);
         return new ModelAndView("assignIssueList","issueList",issueList);
     }
@@ -43,9 +47,12 @@ public class IssueHomeConroller {
 
 
     @RequestMapping("/getIssueListMenu")
-    public ModelAndView getUserListMenu(){
+    public ModelAndView getUserListMenu(Model model){
         List<IssueModel> issueList= issueService.getUserList();
+
+
         return new ModelAndView("issuelistMenu","issueList",issueList);
     }
+
 
 }

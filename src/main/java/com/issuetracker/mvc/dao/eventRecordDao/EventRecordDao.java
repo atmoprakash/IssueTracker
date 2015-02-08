@@ -19,4 +19,5 @@ public interface EventRecordDao {
     public AssignEvent getEventId(Integer id);
     public AssignEvent getIssueTrackerId(Integer id);
 
+
 }

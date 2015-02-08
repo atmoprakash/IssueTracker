@@ -6,6 +6,7 @@ import com.issuetracker.mvc.model.EventRecord;
 import com.issuetracker.mvc.rowmapper.EventHistoryMapper;
 import com.issuetracker.mvc.rowmapper.EventRecordCheckEventIdRowMapper;
 import com.issuetracker.mvc.rowmapper.EventRecordRowMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -116,4 +117,6 @@ public class EventRecordDaoImpl implements EventRecordDao {
 
 
     }
+
+
 }

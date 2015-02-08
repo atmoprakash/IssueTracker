@@ -4,6 +4,7 @@ import com.issuetracker.mvc.model.User;
 import com.issuetracker.mvc.service.userservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,12 +21,14 @@ import java.util.List;
 public class ShowUserToAssignIssueController {
     @Autowired
     UserService userService;
-    @RequestMapping(value = "/showUserToAssignIssue",method = RequestMethod.GET)
-    public ModelAndView showUserToAssignIssue(@RequestParam Integer issue_tracker_id, HttpServletRequest request, HttpSession session){
+    @RequestMapping(value = "/showUserToAssignIssue")
+    public ModelAndView showUserToAssignIssue(@RequestParam Integer issue_tracker_id,@RequestParam String ad,HttpSession session){
         session.setAttribute("issue_id",issue_tracker_id);
+        session.setAttribute("assignedDate",ad);
         List<User> userList = userService.getUserActiveList();
         return new ModelAndView("showUserToAssignIssue", "userList", userList);
 
     }
+
 
 }

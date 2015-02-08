@@ -108,11 +108,23 @@
         <td>${user.issuedate}</td>
         <td>${user.customername}</td>
         <td>${user.createdby}</td>
-        <td>${user.status}</td>
-        <c:if test="${user.status.contains(NEWISSUE)}">
-          <td><a href="assignEvent?id=${user.issue_tracker_id}">View Issue History</a></td>
-        </c:if>
-        <td><a href="viewHistory?id=${user.issue_tracker_id}">View Issue History</a></td>
+        <c:choose>
+          <c:when test="${user.status=='NEWISSUE'}">
+            <td><a href="/showUserToAssignIssue?issue_tracker_id=${user.issue_tracker_id}&ad=${user.issuedate}">NewIssue</a></td>
+          </c:when>
+          <c:otherwise>
+            <td>${user.status}</td>
+          </c:otherwise>
+        </c:choose>
+        <c:choose>
+          <c:when test="${user.status=='NEWISSUE'&& remark.remarks=='Transfer'}">
+            <td>null</td>
+          </c:when>
+          <c:otherwise>
+            <td><a href="viewHistory?id=${user.issue_tracker_id}">View Issue History</a></td>
+          </c:otherwise>
+        </c:choose>
+
 
 
       </tr>

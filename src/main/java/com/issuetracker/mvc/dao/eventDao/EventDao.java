@@ -12,6 +12,10 @@ import java.util.List;
         public List<IssueModel> getUserAssignedList(Integer id);
         public void insertData(Integer user_id,Integer issue_id);
         public void updateTransferData(Integer user_id,Integer event_id);
+    public Integer getEventId(int event_id);
+    public void insertEventRecord(String date,String user_name,Integer event_id);
+
+
 
     }
 

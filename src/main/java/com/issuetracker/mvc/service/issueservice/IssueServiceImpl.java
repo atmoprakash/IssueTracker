@@ -52,4 +52,6 @@ IssueDao issueDao;
     public void updateEventStatusSolved(Integer id) {
         issueDao.updateEventStatusSolved(id);
     }
+
+
 }

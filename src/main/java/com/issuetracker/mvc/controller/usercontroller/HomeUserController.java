@@ -32,8 +32,10 @@ public class HomeUserController {
 
         if (session.getAttribute("result") != null) {
             User us=(User)session.getAttribute("result");
+
             String name=us.getUsername();
                 List<User> userList = userService.getUserList();
+
                     model.addAttribute("name",name);
 
               return new ModelAndView("welcome", "username", userList);

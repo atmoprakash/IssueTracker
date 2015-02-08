@@ -27,5 +27,15 @@ public class EventServiceImpl implements EventService {
         eventDao.updateTransferData(user_id,event_id);
     }
 
+    @Override
+    public int getEventId(int event_id) {
+        return eventDao.getEventId(event_id);
+    }
+
+    @Override
+    public void insertEventRecord(String date, String user_name, Integer event_id) {
+        eventDao.insertEventRecord(date,user_name,event_id);
+    }
+
 
 }

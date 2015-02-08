@@ -1,9 +1,14 @@
 package com.issuetracker.mvc.dao.issueDao;
 
+import com.issuetracker.mvc.model.AssignEvent;
 import com.issuetracker.mvc.model.EventStatus;
 import com.issuetracker.mvc.model.IssueModel;
 import com.issuetracker.mvc.rowmapper.IssueRowMapper;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -82,4 +87,6 @@ public class IssueDaoImpl implements IssueDao {
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         jdbcTemplate.update(sql);
     }
+
+
 }

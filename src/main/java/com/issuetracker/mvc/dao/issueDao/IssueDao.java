@@ -1,5 +1,6 @@
 package com.issuetracker.mvc.dao.issueDao;
 
+import com.issuetracker.mvc.model.AssignEvent;
 import com.issuetracker.mvc.model.IssueModel;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public interface IssueDao {
     public List<IssueModel> getUserList();
     public void updateStatus(Integer id);
     public void updateEventStatusSolved(Integer id);
+
 
 
 }

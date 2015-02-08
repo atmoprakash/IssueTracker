@@ -1,7 +1,9 @@
 package com.issuetracker.mvc.dao.eventDao;
 
 
+import com.issuetracker.mvc.model.AssignEvent;
 import com.issuetracker.mvc.model.IssueModel;
+import com.issuetracker.mvc.rowmapper.EventIdRowMapper;
 import com.issuetracker.mvc.rowmapper.EventRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -52,5 +54,24 @@ public class EventDaoImpl implements EventDao {
 //        String updateTime = sdf.format(dt);
         jdbcTemplate.update(sql,new Object[]{user_id,event_id});
 
+    }
+
+    @Override
+    public Integer getEventId(int event_id) {
+
+
+        String query="select issue_event_id from issue_event where issue_tracker_id=?";
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+       //return jdbcTemplate.query(query,new EventIdRowMapper()).get(0).getIssue_event_id();
+       Integer id=(Integer) jdbcTemplate.queryForObject(query, new Object[]{event_id}, Integer.class);
+        return id;
+    }
+
+    @Override
+    public void insertEventRecord(String date, String user_name, Integer event_id) {
+        String query="insert into event_record(issue_event_id,issue_assigned_to,event_created_date,remarks)values(?,?,?,?)";
+        String remarks="Assigned";
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+        jdbcTemplate.update(query,new Object[]{event_id,user_name,date,remarks});
     }
 }
