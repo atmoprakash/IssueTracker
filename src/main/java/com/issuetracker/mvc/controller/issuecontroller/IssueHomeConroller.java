@@ -4,6 +4,7 @@ import com.issuetracker.mvc.model.IssueModel;
 import com.issuetracker.mvc.service.issueservice.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,8 +27,11 @@ public class IssueHomeConroller {
     }
 
     @RequestMapping("/getIssueList")
-    public ModelAndView getUserList(){
-        List<IssueModel> issueList= issueService.getUserList();
+    public ModelAndView getUserList(Model model){
+
+        List<IssueModel> issueList=issueService.getUserList();
+        IssueModel issueModel=issueList.get(0);
+        model.addAttribute("last",issueModel);
         return new ModelAndView("assignIssueList","issueList",issueList);
     }
 

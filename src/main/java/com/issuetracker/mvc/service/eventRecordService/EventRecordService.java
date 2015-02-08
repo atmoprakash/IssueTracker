@@ -1,5 +1,6 @@
 package com.issuetracker.mvc.service.eventRecordService;
 
+import com.issuetracker.mvc.model.AssignEvent;
 import com.issuetracker.mvc.model.EventRecord;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface EventRecordService {
     public void makeSolvedOne(Integer id);
     public void insertSelfEventRecord(int id,String name);
     public List<EventRecord> checkEventId(Integer id);
+    public List<EventRecord> getHistory(Integer id);
+    public AssignEvent getEventId(Integer id);
 }

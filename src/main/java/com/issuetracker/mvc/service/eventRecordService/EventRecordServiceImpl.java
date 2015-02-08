@@ -1,6 +1,7 @@
 package com.issuetracker.mvc.service.eventRecordService;
 
 import com.issuetracker.mvc.dao.eventRecordDao.EventRecordDao;
+import com.issuetracker.mvc.model.AssignEvent;
 import com.issuetracker.mvc.model.EventRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,5 +44,15 @@ public class EventRecordServiceImpl implements EventRecordService {
     @Override
     public List<EventRecord> checkEventId(Integer id) {
         return eventRecordDao.checkEventId(id);
+    }
+
+    @Override
+    public List<EventRecord> getHistory(Integer id) {
+        return eventRecordDao.getHistory(id);
+    }
+
+    @Override
+    public AssignEvent getEventId(Integer id) {
+        return eventRecordDao.getEventId(id);
     }
 }
