@@ -23,4 +23,9 @@ public class AdminUserControl {
       List<IssueModel> assignedEvent=eventService.getUserAssignedList(id);
       return new ModelAndView("eventAssignList", "assigndetail", assignedEvent);
   }
+    @RequestMapping(value = "/adminHome",method = RequestMethod.GET)
+    public ModelAndView adminHome()
+    {
+                return new ModelAndView("adminhome");
+    }
 }

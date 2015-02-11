@@ -26,8 +26,7 @@ public class UserDaoImpl implements UserDao{
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        String currentTime = sdf.format(dt);
-//        String created_by="rewat";
+//
         jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),sdf.format(dt),name,UserStatus.ACTIVE.toString()});
 
     }
@@ -88,7 +87,7 @@ public class UserDaoImpl implements UserDao{
     @Override
     public List<User> getUserList(Integer id) {
         List userList=new ArrayList();
-        String sql="select * from USER WHERE user_id!="+id;
+        String sql="select * from user WHERE user_id!="+id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
@@ -98,7 +97,7 @@ public class UserDaoImpl implements UserDao{
     public List<User> getUserActiveList(Integer id) {
         String status=UserStatus.ACTIVE.toString();
         List userList=new ArrayList();
-        String sql="select * from USER where status='"+status+"' AND user_id!="+id;
+        String sql="select * from user where status='"+status+"' AND user_id!="+id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
