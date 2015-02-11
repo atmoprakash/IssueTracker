@@ -7,7 +7,7 @@ public class EventRecord {
     private String issue_assigned_to;
     private String issue_transfer_to;
     private String event_created_date;
-    private String event_solve_date;
+    private String event_action_date;
     private String remarks;
     private String issuename;
     private int issue_tracker_id;
@@ -89,12 +89,12 @@ public class EventRecord {
         this.event_created_date = event_created_date;
     }
 
-    public String getEvent_solve_date() {
-        return event_solve_date;
+    public String getEvent_action_date() {
+        return event_action_date;
     }
 
-    public void setEvent_solve_date(String event_solve_date) {
-        this.event_solve_date = event_solve_date;
+    public void setEvent_action_date(String event_solve_date) {
+        this.event_action_date = event_solve_date;
     }
 
     public String getRemarks() {
