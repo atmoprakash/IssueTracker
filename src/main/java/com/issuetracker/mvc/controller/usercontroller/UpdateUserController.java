@@ -19,15 +19,23 @@ public class UpdateUserController {
     UserService userService;
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView updateGetIssue(@RequestParam Integer id,@ModelAttribute User user){
-        user=userService.getUser(id);
+    public ModelAndView updateGetIssue(@RequestParam Integer id){
+       User user=userService.getUser(id);
+        if(user == null){
+            return new ModelAndView("adminhome","","");
+        }
        return new ModelAndView("update","updateUserValue",user);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateIssue(@ModelAttribute User user){
-        userService.updateData(user);
-        return "redirect:/home";
+       boolean b= userService.updateData(user);
+        if(b==true) {
+            return "redirect:/home";
+        }
+        else {
+            return "adminhome";
+        }
 }
 
 

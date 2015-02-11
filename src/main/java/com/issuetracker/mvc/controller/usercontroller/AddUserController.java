@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by acer on 1/26/2015.
  */
@@ -22,8 +24,9 @@ public class AddUserController {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public String insert(@ModelAttribute User user){
-        userService.insertData(user);
+    public String insert(@ModelAttribute User user,HttpSession session){
+        User us=(User)session.getAttribute("result");
+        userService.insertData(user,us.getUsername());
         return "redirect:/home";
     }
 

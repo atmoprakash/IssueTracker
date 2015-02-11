@@ -29,12 +29,9 @@
     height: 22px;
     text-align: center;
   }
-  .heading {
-    font-size: 18px;
-    color: white;
-    font: bold;
+  th {
     background-color: orange;
-    border: thick;
+    color: white;
   }
 </style>
 </head>
@@ -81,14 +78,15 @@
   <h3> update the user</h3>
 <form action="/update" method="post">
   <table border="1">
+<thead>
 
-    <tr>
-      <td class="heading">Id</td>
-      <td class="heading"> name</td>
-      <td class="heading">Username</td>
-      <td class="heading">password</td>
-    </tr>
+      <th >Id</th>
+      <th > name</th>
+      <th>Username</th>
+      <th >password</th>
 
+</thead>
+    <tbody>
 
     <tr>
     <td><input value="${updateUserValue.user_id}" readonly="value" name="user_id"></td></br>
@@ -96,6 +94,7 @@
     <td><input type="text" value="${updateUserValue.username}" name="username"></td></br>
     <td><input type="text" value="${updateUserValue.password}" name="password"></td></br>
   </tr>
+    </tbody>
   </table>
   <br/>
   <input type="submit" value="Update">

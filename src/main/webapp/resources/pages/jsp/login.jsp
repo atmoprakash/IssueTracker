@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>--%>
 
 <%--&lt;%&ndash;--%>
@@ -99,6 +100,11 @@
   </script>
 
 </head>
+<style>
+  #red {
+   font-size: medium; color: red;
+  }
+</style>
 <body>
 
 <!--WRAPPER-->
@@ -114,8 +120,13 @@
 
     <!--HEADER-->
     <div class="header">
+
       <!--TITLE--><h1>Login Form</h1><!--END TITLE-->
-      <!--DESCRIPTION--><span>Fill out the form below to login to my super awesome imaginary control panel.</span><!--END DESCRIPTION-->
+      <c:choose>
+        <c:when test="${info1=='deactivated'}">
+      <div id="red">
+          <c:out value="Your account is Deactivated"></c:out>
+        </div>
     </div>
     <!--END HEADER-->
 
@@ -129,7 +140,7 @@
     <!--FOOTER-->
     <div class="footer">
       <!--LOGIN BUTTON--><input type="submit" name="submit" value="Login" class="button" /><!--END LOGIN BUTTON-->
-      <!--REGISTER BUTTON--><input type="submit" name="submit" value="Register" class="register" /><!--END REGISTER BUTTON-->
+      <%--<!--REGISTER BUTTON--><input type="submit" name="submit" value="Register" class="register" /><!--END REGISTER BUTTON-->--%>
     </div>
     <!--END FOOTER-->
 
@@ -140,6 +151,38 @@
 <!--END WRAPPER-->
 
 <!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
+        </c:when>
+      <c:otherwise>
+       <c:out value="Please Login "></c:out>
+
+
+
+    </div>
+    <!--END HEADER-->
+
+    <!--CONTENT-->
+    <div class="content">
+      <!--USERNAME--><input name="username" type="text" class="input username" value="Username" onfocus="this.value=''" /><!--END USERNAME-->
+      <!--PASSWORD--><input name="password" type="password" class="input password" value="Password" onfocus="this.value=''" /><!--END PASSWORD-->
+    </div>
+    <!--END CONTENT-->
+
+    <!--FOOTER-->
+    <div class="footer">
+      <!--LOGIN BUTTON--><input type="submit" name="submit" value="Login" class="button" /><!--END LOGIN BUTTON-->
+      <%--<!--REGISTER BUTTON--><input type="submit" name="submit" value="Register" class="register" /><!--END REGISTER BUTTON-->--%>
+    </div>
+    <!--END FOOTER-->
+
+  </form>
+  <!--END LOGIN FORM-->
+
+</div>
+<!--END WRAPPER-->
+
+<!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
+</c:otherwise>
+</c:choose>
 
 </body>
 </html>

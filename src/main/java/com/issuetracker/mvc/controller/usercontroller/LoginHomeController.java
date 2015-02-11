@@ -31,13 +31,27 @@ public class LoginHomeController {
     public String welcome(@ModelAttribute("username") User user, ModelMap model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
         {
             User result=userService.checkUser(user.getUsername(),user.getPassword());
-            if(result!=null){
-              String userName=  result.getName();
-                session.setAttribute("userName",userName);
+            if((result!=null) && (result.getRole().equals("ADMIN")) && (result.getStatus().equals("ACTIVE"))){
                 session.setAttribute("result",result);
+                String userName=  result.getName();
+                session.setAttribute("userName",userName);
+
             return "redirect:/eventHome";
-        }else {
-                return "redirect:/login";
+        }
+           else if((result!=null) && (result.getRole().equals("USER")) && (result.getStatus().equals("ACTIVE"))) {
+                session.setAttribute("result", result);
+                String userName = result.getName();
+                session.setAttribute("userName", userName);
+
+                return "redirect:/eventHome";
+            }
+            else if ((result!=null)  && (result.getStatus().equals("INACTIVE"))){
+                String info1="deactivated";
+                model.addAttribute("info1",info1);
+                return "login";
+            }
+            else {
+                return "redirect:login";
             }
         }
 //        session = request.getSession();

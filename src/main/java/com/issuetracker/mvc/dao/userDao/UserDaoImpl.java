@@ -16,30 +16,38 @@ import java.util.List;
  */
 @Repository
 public class UserDaoImpl implements UserDao{
+
     @Autowired
     DataSource dataSource;
 
     @Override
-    public void insertData(User user) {
+    public void insertData(User user,String name) {
         String sql="Insert into user(name,username,password,created_date,created_by,status)"+ "values(?,?,?,?,?,?)";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(dt);
-        String created_by="rewat";
-        jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),currentTime,created_by,UserStatus.ACTIVE.toString()});
+//        String currentTime = sdf.format(dt);
+//        String created_by="rewat";
+        jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),sdf.format(dt),name,UserStatus.ACTIVE.toString()});
 
     }
 
     @Override
-    public void updateData(User user) {
+    public boolean updateData(User user) {
+        boolean res=false;
         String sql="update user set name=?,username=?,password=?,created_date=? where user_id=?";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String updateTime = sdf.format(dt);
-        jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),updateTime,user.user_id});
-
+        Integer a=jdbcTemplate.update(sql, new Object[]{user.getName(), user.getUsername(), user.getPassword(), updateTime, user.user_id});
+        if(a!=0){
+            res=true;
+            return res;
+        }
+        else{
+            return res;
+        }
     }
 
     @Override
@@ -69,23 +77,28 @@ public class UserDaoImpl implements UserDao{
         String sql="select * from user where user_id=" +id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
-        return userList.get(0);
+        if(userList.isEmpty()){
+            return null;
+        }
+        else {
+            return userList.get(0);
+        }
     }
 
     @Override
-    public List<User> getUserList() {
+    public List<User> getUserList(Integer id) {
         List userList=new ArrayList();
-        String sql="select * from USER";
+        String sql="select * from USER WHERE user_id!="+id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
     }
 
     @Override
-    public List<User> getUserActiveList() {
+    public List<User> getUserActiveList(Integer id) {
         String status=UserStatus.ACTIVE.toString();
         List userList=new ArrayList();
-        String sql="select * from USER where status='"+status+"'";
+        String sql="select * from USER where status='"+status+"' AND user_id!="+id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;

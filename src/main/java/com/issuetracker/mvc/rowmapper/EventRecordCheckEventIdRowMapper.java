@@ -19,8 +19,9 @@ public class EventRecordCheckEventIdRowMapper  implements RowMapper<EventRecord>
         eventRecord.setIssue_assigned_to(rs.getString(3));
         eventRecord.setIssue_transfer_to(rs.getString(4));
         eventRecord.setEvent_created_date(rs.getString(5));
-        eventRecord.setEvent_solve_date(rs.getString(6));
-        eventRecord.setRemarks(rs.getString(7));
+        eventRecord.setEvent_transfered_date(rs.getDate(6));
+        eventRecord.setEvent_solve_date(rs.getString(7));
+        eventRecord.setRemarks(rs.getString(8));
         return eventRecord;
     }
 }

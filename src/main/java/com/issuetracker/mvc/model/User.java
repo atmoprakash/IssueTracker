@@ -1,5 +1,7 @@
 package com.issuetracker.mvc.model;
 
+import java.util.Date;
+
 /**
  * Created by acer on 1/21/2015.
  */
@@ -9,9 +11,27 @@ public class User {
     private String name;
     private String username;
     private String password;
-    private String created_date;
+    private Date created_date;
     private String created_by;
     private String status;
+    private String role;
+
+    public Date getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
+    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getStatus() {
         return status;
@@ -21,10 +41,6 @@ public class User {
         this.status = status;
     }
 
-
-
-
-
     public Integer getUser_id() {
         return user_id;
     }
@@ -33,8 +49,6 @@ public class User {
         this.user_id = user_id;
     }
 
-
-
     public String getName() {
         return name;
     }
@@ -42,13 +56,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    public String getCreated_date() {
-        return created_date;
-    }
 
-    public void setCreated_date(String created_date) {
-        this.created_date = created_date;
-    }
 
     public String getCreated_by() {
         return created_by;
@@ -57,7 +65,6 @@ public class User {
     public void setCreated_by(String created_by) {
         this.created_by = created_by;
     }
-
 
 
     public String getPassword() {
