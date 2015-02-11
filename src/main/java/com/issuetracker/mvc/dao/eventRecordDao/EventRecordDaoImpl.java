@@ -39,11 +39,12 @@ public class EventRecordDaoImpl implements EventRecordDao {
 
     @Override
     public void insertEventRecord(int issueId, String username, String name, String assignedDate) {
-
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String remarks = "Transfer";
-        String sql = "insert into event_record(issue_event_id,issue_assigned_to,issue_transfer_to,event_created_date,remarks)values(?,?,?,?,?)";
+        String sql = "insert into event_record(issue_event_id,issue_assigned_to,issue_transfer_to,event_created_date,event_transfered_date,remarks)values(?,?,?,?,?,?)";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.update(sql, new Object[]{issueId, username, name, assignedDate, remarks});
+        jdbcTemplate.update(sql, new Object[]{issueId, username, name, assignedDate,sdf.format(dt), remarks});
 
     }
 
@@ -87,7 +88,7 @@ public class EventRecordDaoImpl implements EventRecordDao {
     @Override
     public List<EventRecord> getHistory(Integer id) {
         List seeHistory = new ArrayList();
-        String sql = "SELECT t.issuename,t.servicename,r.issue_assigned_to,r.issue_transfer_to,r.event_created_date,r.event_solve_date,r.remarks FROM eclipsedb.event_record r,eclipsedb.issue_event e,eclipsedb.issue_tracker t\n" +
+        String sql = "SELECT t.issuename,t.servicename,r.issue_assigned_to,r.issue_transfer_to,r.event_created_date,r.event_transfered_date,r.event_solve_date,r.remarks FROM eclipsedb.event_record r,eclipsedb.issue_event e,eclipsedb.issue_tracker t\n" +
         "WHERE e.issue_event_id=r.issue_event_id  AND e.issue_tracker_id=t.issue_tracker_id and r.issue_event_id="+id;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         seeHistory = jdbcTemplate.query(sql, new EventRecordRowMapper());

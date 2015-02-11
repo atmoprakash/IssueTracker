@@ -24,7 +24,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="D:\GitData\IssueTracker\target/MANIFEST.MF" />
+        <element id="file-copy" path="C:\Users\acer\tests\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="tests/web/Web" />
     </root>

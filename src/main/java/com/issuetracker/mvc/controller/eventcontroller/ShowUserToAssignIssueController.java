@@ -23,7 +23,8 @@ public class ShowUserToAssignIssueController {
     @RequestMapping(value = "/showUserToAssignIssue",method = RequestMethod.GET)
     public ModelAndView showUserToAssignIssue(@RequestParam Integer issue_tracker_id, HttpServletRequest request, HttpSession session){
         session.setAttribute("issue_id",issue_tracker_id);
-        List<User> userList = userService.getUserActiveList();
+        User us=(User)session.getAttribute("result");
+        List<User> userList = userService.getUserActiveList(us.getUser_id());
         return new ModelAndView("showUserToAssignIssue", "userList", userList);
 
     }

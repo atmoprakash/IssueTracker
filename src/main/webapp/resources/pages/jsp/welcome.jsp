@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <title>IssueTracker</title>
@@ -32,11 +33,9 @@
       text-align: center;
     }
     .heading {
-      font-size: 18px;
-      color: white;
-      font: bold;
       background-color: orange;
-      border: thick;
+      color: white;
+      text-align: center;
     }
   </style>
 <body>
@@ -72,44 +71,51 @@
         <input type="text" class="form-control col-lg-8" placeholder="Search">
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/eventHome">Home</a></li>
+        <li><a href="/eventHome">Home[ Welcome ${name1}]</a></li>
         <li><a href="/logout">Logout</a></li>
 
         </li>
       </ul>
     </div>
   </div>
+  <c:choose>
+  <c:when test="${role=='ADMIN'}">
   <h1>Add New Users To The System</h1>
   <div>
-  <form method="post" action="/add">
-  <table>
-    <tr>
-      <td class="heading">Name</td>
-      <td class="heading">Username</td>
-      <td class="heading">Password</td>
-    </tr>
-    <tr>
-      <td><input type="text"  placeholder="name" name="name" required=""> </td>
-      <td><input type="text" placeholder="username" name="username" required=""> </td>
-      <td><input type="password" placeholder=" password" name="password" required=""> </td>
-      <td><input type="submit" value="Add User"> </td>
-    </tr>
-</table>
-  </form>
+    <form method="post" action="/add">
+
+      <tr>
+        <td><label>Name</label></td>
+        <td><input type="text"   name="name" required=""/></td>
+        <td><label>Username</label></td>
+        <td><input type="text"  name="username" required=""/></td>
+        <td><label>Password</label></td>
+        <td><input type="text"  name="password" required=""/></td>
+      </tr>
+
+
+
+      <td><input type="submit" value="Submit"></td>
+
+
+
+      </table>
+    </form>
   </div>
 
 <h2>esewa new Members</h2>
 <table border="1">
   <thead>
-  <tr>
-    <td class="heading">ID</th>
-    <td class="heading">name</th>
-    <td class="heading">Username</th>
-    <td class="heading">password</th>
-    <td  class="heading">created_date</th>
-    <td  class="heading">status</th>
-    <td  class="heading" colspan=2>Action</th>
-  </tr>
+
+    <th class="heading">ID</th>
+    <th class="heading">name</th>
+    <th class="heading">Username</th>
+    <th class="heading">password</th>
+    <th  class="heading">created_date</th>
+    <th  class="heading">status</th>
+    <th  class="heading" colspan=2>Action</th>
+    <th class="heading">Use This User</th>
+
   </thead>
 
   <tbody>
@@ -131,6 +137,7 @@
           <td><a href="/activate?id=${user.user_id }" onclick="return confirm('Are You sure you want to ACTIVATE ')">ACTIVATE</a></td>
         </c:otherwise>
       </c:choose>
+      <td><a href="adminUserControl?id=${user.user_id}">Check Issues Of this User</a> </td>
     </tr>
   </c:forEach>
 
@@ -138,5 +145,48 @@
 </table>
 <br/>
   </center>
+</c:when>
+<c:otherwise>
+  <h2>esewa new Members</h2>
+  <table border="1">
+    <thead>
+    <tr>
+      <th class="heading">ID</th>
+      <th class="heading">name</th>
+      <th class="heading">Username</th>
+      <th class="heading">password</th>
+      <th  class="heading">created_date</th>
+      <th  class="heading">status</th>
+      <%--<td  class="heading" colspan=2>Action</th>--%>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <c:forEach items="${username}" var="user">
+      <tr>
+        <td><c:out value="${user.user_id}" /></td>
+        <td><c:out value="${user.name}" /></td>
+        <td><c:out value="${user.username}" /></td>
+        <td><c:out value="${user.password}" /></td>
+        <td><c:out value="${user.created_date}" /></td>
+        <td><c:out value="${user.status}" /></td>
+        <%--<td><a href="/update?id=${user.user_id}">Update</a></td>--%>
+        <%--<c:choose>--%>
+          <%--<c:when test="${user.status=='ACTIVE'}">--%>
+            <%--<td><a href="/delete?id=${user.user_id }" onclick="return confirm('Are You sure you want to DEACTIVATE ')">DEACTIVATE</a></td>--%>
+          <%--</c:when>--%>
+          <%--<c:otherwise>--%>
+            <%--<td><a href="/activate?id=${user.user_id }" onclick="return confirm('Are You sure you want to ACTIVATE ')">ACTIVATE</a></td>--%>
+          <%--</c:otherwise>--%>
+        <%--</c:choose>--%>
+      </tr>
+    </c:forEach>
+
+    </tbody>
+  </table>
+  <br/>
+</c:otherwise>
+</c:choose>
 </body>
 </html>

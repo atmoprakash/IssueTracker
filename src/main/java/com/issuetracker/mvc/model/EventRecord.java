@@ -1,10 +1,6 @@
 package com.issuetracker.mvc.model;
 
 import java.util.Date;
-
-/**
- * Created by sakshi on 2/1/2015.
- */
 public class EventRecord {
     private int event_record_id;
     private int issue_event_id;
@@ -15,6 +11,16 @@ public class EventRecord {
     private String remarks;
     private String issuename;
     private int issue_tracker_id;
+
+    private Date event_transfered_date;
+    public Date getEvent_transfered_date() {
+        return event_transfered_date;
+    }
+
+    public void setEvent_transfered_date(Date event_transfered_date) {
+        this.event_transfered_date = event_transfered_date;
+    }
+
 
     public int getIssue_tracker_id() {
         return issue_tracker_id;
