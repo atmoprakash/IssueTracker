@@ -28,19 +28,20 @@
     .heading {
       font-size: 18px;
       color: white;
-      font: bold;
+      /*font: bold;*/
       background-color: orange;
       border: thick;
     }
   </style>
-</head>
-<body>
-<center>
-
 
   <b>IssueTracker | Registration Form </b>
-<div>
-    <form method="post" action="/insertIssue" >
+
+  </head>
+<body>
+<div id="form">
+  <p id="head"></p>
+  <!-- Form starts from here -->
+    <form action="/insertIssue" method="post">
       <table>
         <tr>
           <td class="heading">Issue Name</td>
@@ -48,16 +49,15 @@
           <td class="heading">Customer Name</td>
         </tr>
         <tr>
-          <td><input type="text" name="issuename" required="" /></td>
-          <td><input type="text" name="servicename" required=""/></td>
-          <td><input type="text" name="customername" required=""/></td>
-          <td><input type="submit" value="Submit"> </td>
+          <td><input id="issuename" type="text" name="issuename" /></td>
+          <td><input type="text" name="servicename" /></td>
+          <td><input type="text" name="customername" /></td>
+          <td><input id="submit" type='submit' value="submit"> </td>
         </tr>
 
 
       </table>
     </form>
   </div>
-</center>
 </body>
 </html>

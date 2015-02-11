@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao{
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = sdf.format(dt);
-        String created_by="rewat";
+        String created_by="asif`";
         jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),currentTime,created_by,UserStatus.ACTIVE.toString()});
 
     }

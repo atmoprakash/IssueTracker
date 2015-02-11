@@ -163,15 +163,11 @@
 </div>
 <br>
 <form class="login" action="/login" method="post" >
-  <input type="text" placeholder="username" name="username"><br>
+  <input type="text" placeholder="username" name="username" id="user"><br>
   <input type="password" placeholder="password" name="password"><br>
   <input type="submit" value="Login">
-</form>
-<div class="footer">
-  <!--LOGIN BUTTON--><input type="submit" name="submit" value="Login" class="button" /><!--END LOGIN BUTTON-->
-  <!--REGISTER BUTTON--><input type="submit" name="submit" value="Register" class="register" /><!--END REGISTER BUTTON-->
-</div>
 
+</form>
 </body>
 
 </html>
