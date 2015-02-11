@@ -22,6 +22,8 @@ public class IssueHomeConroller {
 
     @Autowired
     IssueService issueService;
+    @Autowired
+    EventRecordService eventRecordService;
 
     @RequestMapping(value = "/registerIssue" ,method = RequestMethod.GET)
     public String registerUser(){
@@ -41,8 +43,12 @@ public class IssueHomeConroller {
 
     @RequestMapping(value = "/insertIssue",method = RequestMethod.POST)
     public String insert(@ModelAttribute IssueModel user){
-        issueService.insertData(user);
-        return "redirect:/getIssueList";
+       int tracker_id= issueService.insertData(user);
+       int event_id= issueService.insertRecord(tracker_id);
+    eventRecordService.insertNewIssue(event_id);
+
+      //  issueService.getTrakerId()
+        return "redirect:/getIssueListMenu";
     }
 
 

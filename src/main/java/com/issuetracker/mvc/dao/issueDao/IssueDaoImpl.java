@@ -6,12 +6,19 @@ import com.issuetracker.mvc.model.IssueModel;
 import com.issuetracker.mvc.rowmapper.IssueRowMapper;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,14 +36,29 @@ public class IssueDaoImpl implements IssueDao {
         this.dataSource=dataSource;
     }
     @Override
-    public void insertData(IssueModel user) {
-    String sql="Insert into issue_tracker (issuename,servicename,issuedate,customername,createdby,status)"+ "values(?,?,?,?,?,?)";
+    public int insertData(final IssueModel user) {
+        KeyHolder keyHolder=new GeneratedKeyHolder();
+    final String sql="Insert into issue_tracker (issuename,servicename,issuedate,customername,createdby,status)"+ "values(?,?,?,?,?,?)";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(dt);
-        String created_by="rewat";
-        jdbcTemplate.update(sql,new Object[]{user.getIssuename(),user.getServicename(),currentTime,user.getCustomername(),created_by, EventStatus.NEWISSUE.toString()});
+        final String currentTime = sdf.format(dt);
+        final String created_by="rewat";
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, user.getIssuename());
+                ps.setString(2, user.getServicename());
+                ps.setString(3, currentTime);
+                ps.setString(4, user.getCustomername());
+                ps.setString(5, created_by);
+                ps.setString(6, EventStatus.NEWISSUE.toString());
+                return ps;
+            }
+        },keyHolder);
+        return keyHolder.getKey().intValue();
+       // jdbcTemplate.update(sql,new Object[]{user.getIssuename(),user.getServicename(),currentTime,user.getCustomername(),created_by, EventStatus.NEWISSUE.toString()});
     }
 
     @Override
@@ -86,6 +108,31 @@ public class IssueDaoImpl implements IssueDao {
         String sql="update issue_tracker set status='"+EventStatus.SOLVED.toString()+"' where issue_tracker_id="+id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         jdbcTemplate.update(sql);
+    }
+
+    @Override
+    public int insertRecord(final int tracker_id) {
+KeyHolder keyHolder=new GeneratedKeyHolder();
+        final java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      final String currentTime = sdf.format(dt);
+      final Integer solve=0;
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+        final String sql="insert into issue_event(issue_tracker_id,assigned_date,solve)values(?,?,?)";
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+              ps.setInt(1,tracker_id);
+                ps.setString(2, currentTime);
+                ps.setInt(3,solve);
+
+                return ps;
+            }
+        },keyHolder);
+        return keyHolder.getKey().intValue();
+       // jdbcTemplate.update(sql,new Object[]{tracker_id,currentTime,solve});
+
     }
 
 

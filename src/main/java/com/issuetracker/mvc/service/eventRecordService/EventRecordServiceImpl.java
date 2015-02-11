@@ -22,8 +22,8 @@ public class EventRecordServiceImpl implements EventRecordService {
     }
 
     @Override
-    public void update(int id, String username) {
-        eventRecordDao.update(id,username);
+    public void update(int id, String username,String date) {
+        eventRecordDao.update(id,username,date);
     }
 
     @Override
@@ -37,28 +37,37 @@ public class EventRecordServiceImpl implements EventRecordService {
     }
 
     @Override
-    public void insertSelfEventRecord(int id, String name) {
-        eventRecordDao.insertSelfEventRecord(id,name);
+    public void insertSelfEventRecord(int id, String name,String date) {
+        eventRecordDao.insertSelfEventRecord(id,name,date);
     }
 
     @Override
-    public List<EventRecord> checkEventId(Integer id) {
+    public List<String> checkEventId(Integer id) {
         return eventRecordDao.checkEventId(id);
     }
 
     @Override
-    public List<EventRecord> getHistory(Integer id) {
+    public List<EventRecord> getHistory(List<Integer>  id) {
         return eventRecordDao.getHistory(id);
     }
 
     @Override
-    public AssignEvent getEventId(Integer id) {
+    public List<Integer> getEventId(Integer id) {
         return eventRecordDao.getEventId(id);
     }
 
     @Override
     public AssignEvent getIssueTrackerId(Integer id) {
        return eventRecordDao.getIssueTrackerId(id);
+    }
+
+    @Override
+    public void insertNewIssue(int event_id) {
+        eventRecordDao.insertNewIssue(event_id);
+    }
+    @Override
+    public void insertEventRecord( String user_name,String date,Integer event_id) {
+        eventRecordDao.insertEventRecord(user_name,date,event_id);
     }
 
 }

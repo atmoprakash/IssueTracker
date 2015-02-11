@@ -1,7 +1,9 @@
 package com.issuetracker.mvc.controller.eventcontroller;
 
+import com.issuetracker.mvc.service.eventRecordService.EventRecordService;
 import com.issuetracker.mvc.service.eventservices.EventService;
 import com.issuetracker.mvc.service.issueservice.IssueService;
+import com.issuetracker.mvc.service.userservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +21,28 @@ public class AssignEventController {
     EventService eventService;
     @Autowired
     IssueService issueService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    EventRecordService eventRecordService;
 
     @RequestMapping(value="/assignEvent")
-    public String assignIssueUser(@RequestParam Integer user_id,@RequestParam String username,HttpServletRequest request, HttpSession session){
-        Integer issue_id=(Integer)session.getAttribute("issue_id");
-        session.setAttribute("user_name", username);
-       String assignedDate=(String) session.getAttribute("assignedDate");
+    public String assignIssueUser(HttpServletRequest request, HttpSession session,@RequestParam Integer id) {
+        Integer issue_id = (Integer) session.getAttribute("issue_id");
+        if (id!= null)
+            {
 
-        session.setAttribute("user_id",user_id);
-        eventService.insertData(user_id, issue_id);
-      Integer event_id= eventService.getEventId(issue_id);
+               eventService.updateUserId(id, issue_id);
+
+             String username= userService.getUserNamebyId(id);
+             Integer event_id= eventService.getEventId(issue_id);
+             String assignedDate=  (String ) session.getAttribute("assignedDate");
+          eventRecordService.insertEventRecord(username,assignedDate,event_id);
+
+            }
+
         issueService.updateStatus(issue_id);
-     eventService.insertEventRecord(assignedDate,username,event_id);
+
 
         return "redirect:eventHome";
     }

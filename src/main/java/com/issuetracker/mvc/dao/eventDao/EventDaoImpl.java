@@ -7,9 +7,13 @@ import com.issuetracker.mvc.rowmapper.EventIdRowMapper;
 import com.issuetracker.mvc.rowmapper.EventRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,25 +37,19 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
-    public void insertData(Integer user_id,Integer issue_id ) {
-        String sql="Insert into issue_event(user_id,issue_tracker_id,assigned_date,solve)"+ "values(?,?,?,?)";
+    public void updateUserId(final Integer user_id, final Integer issue_id ) {
+
+         final String sql="update issue_event set user_id=? where issue_tracker_id=?";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
-        java.util.Date dt = new java.util.Date();
-        java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTime = sdf.format(dt);
-        Integer solve=0;
-        jdbcTemplate.update(sql,new Object[]{user_id,issue_id,currentTime,solve});
 
+      jdbcTemplate.update(sql,new Object[]{user_id,issue_id});
 
-    }
+        }
 
     @Override
     public void updateTransferData(Integer user_id, Integer event_id) {
         String sql="update issue_event set user_id=? where issue_event_id=?";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
-//        java.util.Date dt = new java.util.Date();
-//        java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        String updateTime = sdf.format(dt);
         jdbcTemplate.update(sql,new Object[]{user_id,event_id});
 
     }
@@ -69,9 +67,13 @@ public class EventDaoImpl implements EventDao {
 
     @Override
     public void insertEventRecord(String date, String user_name, Integer event_id) {
-        String query="insert into event_record(issue_event_id,issue_assigned_to,event_created_date,remarks)values(?,?,?,?)";
+        KeyHolder keyHolder=new GeneratedKeyHolder();
+        final String query="insert into event_record(issue_event_id,issue_assigned_to,event_created_date,remarks)values(?,?,?,?)";
         String remarks="Assigned";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
-        jdbcTemplate.update(query,new Object[]{event_id,user_name,date,remarks});
+
+       jdbcTemplate.update(query, new Object[]{event_id, user_name, date, remarks});
+
+
     }
 }

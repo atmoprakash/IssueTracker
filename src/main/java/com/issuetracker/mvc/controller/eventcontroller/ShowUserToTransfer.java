@@ -25,9 +25,9 @@ public class ShowUserToTransfer {
     @RequestMapping(value = "/showUserToTransferIssue",method = RequestMethod.GET)
     public ModelAndView showUserToAssignIssue(@RequestParam Integer event_id,@RequestParam String issue_date, HttpServletRequest request, HttpSession session,Model model){
         session.setAttribute("event_id",event_id);
-        //session.setAttribute("assignedDate",assigned_date);
+        session.setAttribute("assignedDate",issue_date);
         model.addAttribute("asignDate",issue_date);
-        List<User> userList = userService.getUserList();
+        List<User> userList = userService.getUserActiveList();
         return new ModelAndView("showUserToTransferIssue", "userList", userList);
 
     }

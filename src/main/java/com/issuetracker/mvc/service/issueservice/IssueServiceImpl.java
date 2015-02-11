@@ -19,8 +19,8 @@ public class IssueServiceImpl implements IssueService {
 IssueDao issueDao;
 
     @Override
-    public void insertData(IssueModel user) {
-        issueDao.insertData(user);
+    public int insertData(IssueModel user) {
+        return issueDao.insertData(user);
     }
 
     @Override
@@ -51,6 +51,10 @@ IssueDao issueDao;
     @Override
     public void updateEventStatusSolved(Integer id) {
         issueDao.updateEventStatusSolved(id);
+    }
+    @Override
+    public int insertRecord(int tracker_id) {
+        return issueDao.insertRecord(tracker_id);
     }
 
 

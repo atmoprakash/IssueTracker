@@ -19,8 +19,8 @@ public class UpdateUserController {
     UserService userService;
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView updateGetIssue(@RequestParam Integer id,@ModelAttribute User user){
-        user=userService.getUser(id);
+    public ModelAndView updateGetIssue(@RequestParam Integer id){
+       User user=userService.getUser(id);
        return new ModelAndView("update","updateUserValue",user);
     }
 

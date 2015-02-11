@@ -18,7 +18,7 @@ public class EventRecordRowMapper implements RowMapper<EventRecord> {
         eventRecord.setIssue_assigned_to(rs.getString("issue_assigned_to"));
         eventRecord.setIssue_transfer_to(rs.getString("issue_transfer_to"));
         eventRecord.setEvent_created_date(rs.getString("event_created_date"));
-        eventRecord.setEvent_solve_date(rs.getString("event_solve_date"));
+        eventRecord.setEvent_action_date(rs.getString("event_action_date"));
         eventRecord.setRemarks(rs.getString("remarks"));
        // eventRecord.setIssue_event_id(rs.getInt("issue_event_id"));
       //  eventRecord.setIssue_tracker_id(rs.getInt("issue_tracker_id"));

@@ -91,6 +91,7 @@
           <td><input type="text" placeholder="issuename" name="issuename" required="" /></td>
           <td><input type="text" placeholder="servicename" name="servicename" required=""/></td>
           <td><input type="text" placeholder="customername" name="customername" required=""/></td>
+
           <td><input type="submit" value="Submit"> </td>
         </tr>
 
@@ -120,7 +121,7 @@
         <td>${event.assigned_date}</td>
   <td><a href="/showUserToTransferIssue?event_id=${event.issue_event_id}&issue_date=${event.issuedate}">Assign Issue to Other User</a></td>
         <td>
-          <a href="/solve?event_id=${event.issue_event_id}">Solve</a>
+          <a href="/solve?event_id=${event.issue_event_id}&i_d=${event.issuedate}">Solve</a>
         </td>
       </tr>
       <c:set var="count" value="${count+1}"/>

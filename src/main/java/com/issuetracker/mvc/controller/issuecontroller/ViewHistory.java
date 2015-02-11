@@ -23,12 +23,13 @@ public class ViewHistory {
 
     @RequestMapping(value = "/viewHistory")
     public ModelAndView viewHistory(@RequestParam Integer id,Model model) {
-        AssignEvent getEventId = eventRecordService.getEventId(id);
+      List<Integer> getEventId = eventRecordService.getEventId(id);
         if (getEventId == null) {
             return new ModelAndView("error");
         } else {
-            List<EventRecord> seeHistory = eventRecordService.getHistory(getEventId.getIssue_event_id());
+            List<EventRecord> seeHistory = eventRecordService.getHistory(getEventId);
             return new ModelAndView("issueTrackList", "issueList", seeHistory);
         }
     }
 }
+

@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,5 +90,16 @@ public class UserDaoImpl implements UserDao{
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
+    }
+
+    @Override
+    public String getUserNamebyId(Integer id) {
+
+        String sql="select name from user where user_id=?";
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
+
+
+   return jdbcTemplate.queryForObject(sql, new Object[]{id}, String.class);
+
     }
 }

@@ -39,7 +39,7 @@
 <body>
 <center>
 
-
+<form action="/transferUserIssue" method="get">
 
   <b>Select User to Transfer Your Issue to Him/Her </b>
 <table border="1">
@@ -52,13 +52,15 @@
       <tr>
         <td>${user.user_id}</td>
         <td>${user.username}</td>
-        <td><a href="transferUserIssue?user_id=${user.user_id}&name=${user.name}&date=${asignDate}" onclick="return confirm('Are You sure you want to Transfer The Issue ')">Select</a></td>
-
+        <td>
+       <%--   <a href="transferUserIssue?user_id=${user.user_id}&name=${user.name}&date=${asignDate}" onclick="return confirm('Are You sure you want to Transfer The Issue ')">Select</a></td>
+         --%>
+<td><input type="radio" name="id" value="${user.user_id}"></td>
       </tr>
     </c:forEach>
-    <tr><td colspan="7"><a href="registerIssue">Add New Issue</a></td></tr>
+    <tr><td colspan="7"><input type="submit" value="Submit"></td></tr>
   </table>
-
+</form>
 </center>
 </body>
 </html>
