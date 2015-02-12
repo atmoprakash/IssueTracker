@@ -53,23 +53,10 @@
     <div class="navbar-collapse collapse navbar-inverse-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="getIssueListMenu">Show Issues List</a></li>
-        <%--<li><a href="issueTrackList">View Event Record</a></li>--%>
-        <%--<li class="dropdown">--%>
-        <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>--%>
-        <%--<ul class="dropdown-menu">--%>
-        <%--<li><a href="#">Action</a></li>--%>
-        <%--<li><a href="#">Another action</a></li>--%>
-        <%--<li><a href="#">Something else here</a></li>--%>
-        <%--<li class="divider"></li>--%>
-        <%--<li class="dropdown-header">Dropdown header</li>--%>
-        <%--<li><a href="#">Separated link</a></li>--%>
-        <%--<li><a href="#">One more separated link</a></li>--%>
-        <%--</ul>--%>
-        <%--</li>--%>
       </ul>
       <form class="navbar-form navbar-left" action="/assignEvent" method="get">
         <input type="text" class="form-control col-lg-8" placeholder="Search">
-
+</form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/eventHome">Home</a></li>
         <li><a href="/logout">Logout</a></li>
@@ -82,9 +69,6 @@
 
 
   <b>Select User to Register Issue to Him/Her </b>
-
-
-
 
 
   <table border="1">
@@ -116,7 +100,5 @@
   </table>
   </center>
   </form>
-
-
 </body>
 </html>

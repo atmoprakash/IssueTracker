@@ -26,7 +26,7 @@ public class AddUserController {
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public String insert(@ModelAttribute User user,HttpSession session){
         User us=(User)session.getAttribute("result");
-        userService.insertData(user,us.getUsername());
+        userService.insertData(user);
         return "redirect:/home";
     }
 

@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+/**
+ * Created by acer on 1/28/2015.
+ */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
@@ -14,14 +18,15 @@ public class UserServiceImpl implements UserService{
     UserDao userDao;
 
     @Override
-    public void insertData(User user,String name) {
-        userDao.insertData(user,name);
+    public void insertData(User user) {
+        userDao.insertData(user);
     }
 
     @Override
-    public boolean updateData(User user) {
-       return userDao.updateData(user);
+    public void updateData(User user) {
+        userDao.updateData(user);
     }
+
     @Override
     public void deleteData(Integer id) {
         userDao.deleteData(id);
@@ -40,19 +45,12 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public List<User> getUserList(Integer id) {
-        return userDao.getUserList(id);
+    public List<User> getUserList() {
+        return userDao.getUserList();
     }
 
     @Override
-    public List<User> getUserActiveList(Integer id)
-    {
-        return userDao.getUserActiveList(id);
-    }
-
-    @Override
-    public void activeData(Integer id) {
-        userDao.activeData(id);
+    public List<User> getUserActiveList() {return userDao.getUserActiveList();
     }
 
     @Override

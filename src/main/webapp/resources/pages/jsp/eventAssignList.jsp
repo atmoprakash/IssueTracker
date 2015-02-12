@@ -36,6 +36,28 @@
       border: thick;
     }
   </style>
+  <script>
+    function validateIssueForm() {
+      var issuename = document.getElementById('issuename');
+      var servicename = document.getElementById('serviceename');
+      var customername = document.getElementById('customername');
+      if (textAlphanumeric(issuename, "* For Issues please use numbers and letters *")) {
+        if (textAlphanumeric(servicename, "* For Services please use numbers and letters *")){
+          if (textAlphanumeric(customername, "* For Name please use numbers and letters *")) {
+            return true;
+          }}}
+        return false
+      }
+    function textAlphanumeric(inputtext,alert) {
+      var alphaExp = /^[a-zA-Z]+$/;
+      if (inputtext.value.match(alphaExp)) {
+        return true;
+      } else {
+        document.getElementById('p1').innerText = alert; // This segment displays the validation rule for issuename.
+        inputtext.focus();
+        return false;
+      }
+    }</script>
 </head>
 <body>
 <center>
@@ -52,19 +74,7 @@
     <div class="navbar-collapse collapse navbar-inverse-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="getIssueListMenu">Show Issues List</a></li>
-        <%--<li><a href="issueTrackList">View Event Record</a></li>--%>
-        <%--<li class="dropdown">--%>
-          <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>--%>
-          <%--<ul class="dropdown-menu">--%>
-            <%--<li><a href="#">Action</a></li>--%>
-            <%--<li><a href="#">Another action</a></li>--%>
-            <%--<li><a href="#">Something else here</a></li>--%>
-            <%--<li class="divider"></li>--%>
-            <%--<li class="dropdown-header">Dropdown header</li>--%>
-            <%--<li><a href="#">Separated link</a></li>--%>
-            <%--<li><a href="#">One more separated link</a></li>--%>
-          <%--</ul>--%>
-        <%--</li>--%>
+
       </ul>
       <form class="navbar-form navbar-left">
         <input type="text" class="form-control col-lg-8" placeholder="Search">
@@ -80,7 +90,10 @@
 <h3>IssueTracker</h3>
   <b> Register Issue</b>
   <div>
-    <form method="post" action="/insertIssue" >
+    <div id="form">
+      <p id="head"></p>
+      <!-- Form starts from here -->
+    <form onsubmit="validateIssueForm()" method="post" action="/insertIssue" >
       <table>
         <tr>
           <td class="heading">Issue Name</td>
@@ -88,9 +101,10 @@
           <td class="heading">Customer Name</td>
         </tr>
         <tr>
-          <td><input type="text" placeholder="issuename" name="issuename" required="" /></td>
-          <td><input type="text" placeholder="servicename" name="servicename" required=""/></td>
-          <td><input type="text" placeholder="customername" name="customername" required=""/></td>
+          <td><input id="issuename" type="text" placeholder="issuename" name="issuename" required="" /></td>
+          <p id="p1"></p>
+          <td><input id="servicename" type="text" placeholder="servicename" name="servicename" required=""/></td>
+          <td><input id="customername" type="text" placeholder="customername" name="customername" required=""/></td>
 
           <td><input type="submit" value="Submit"> </td>
         </tr>
@@ -98,7 +112,7 @@
 
       </table>
     </form>
-  </div>
+  </div></div>
 <br/><br/>
   <b>New Issues Needed To Solve by You</b>
   <table border="1">

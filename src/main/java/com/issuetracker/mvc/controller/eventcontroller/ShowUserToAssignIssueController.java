@@ -22,10 +22,13 @@ public class ShowUserToAssignIssueController {
     @Autowired
     UserService userService;
     @RequestMapping(value = "/showUserToAssignIssue")
-    public ModelAndView showUserToAssignIssue(@RequestParam Integer issue_tracker_id,@RequestParam String ad,HttpSession session){
+    public ModelAndView showUserToAssignIssue(@RequestParam Integer issue_tracker_id,@RequestParam String ad,HttpSession session ){
         session.setAttribute("issue_id",issue_tracker_id);
         session.setAttribute("assignedDate",ad);
         List<User> userList = userService.getUserActiveList();
+//        User us=new User();
+//        String username=us.getUsername();
+//        String role=us.getRole();
         return new ModelAndView("showUserToAssignIssue", "userList", userList);
 
     }

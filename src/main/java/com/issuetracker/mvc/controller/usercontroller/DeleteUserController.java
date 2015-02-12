@@ -18,16 +18,12 @@ import java.sql.SQLException;
 public class DeleteUserController {
     @Autowired
     UserService userService;
+
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String welcome(@RequestParam Integer id, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
         userService.deleteData(id);
-            return "redirect:/home";
-        }
-
-    @RequestMapping(value = "/activate", method = RequestMethod.GET)
-    public String activate(@RequestParam Integer id, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
-        userService.activeData(id);
         return "redirect:/home";
     }
-    }
+
+}
 

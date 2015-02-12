@@ -53,19 +53,7 @@
     <div class="navbar-collapse collapse navbar-inverse-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="getIssueListMenu">Show Issues List</a></li>
-        <%--<li><a href="issueTrackList">View Event Record</a></li>--%>
-        <%--<li class="dropdown">--%>
-          <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>--%>
-          <%--<ul class="dropdown-menu">--%>
-            <%--<li><a href="#">Action</a></li>--%>
-            <%--<li><a href="#">Another action</a></li>--%>
-            <%--<li><a href="#">Something else here</a></li>--%>
-            <%--<li class="divider"></li>--%>
-            <%--<li class="dropdown-header">Dropdown header</li>--%>
-            <%--<li><a href="#">Separated link</a></li>--%>
-            <%--<li><a href="#">One more separated link</a></li>--%>
-          <%--</ul>--%>
-        <%--</li>--%>
+
       </ul>
       <form class="navbar-form navbar-left">
         <input type="text" class="form-control col-lg-8" placeholder="Search">
@@ -171,15 +159,6 @@
         <td><c:out value="${user.password}" /></td>
         <td><c:out value="${user.created_date}" /></td>
         <td><c:out value="${user.status}" /></td>
-        <%--<td><a href="/update?id=${user.user_id}">Update</a></td>--%>
-        <%--<c:choose>--%>
-          <%--<c:when test="${user.status=='ACTIVE'}">--%>
-            <%--<td><a href="/delete?id=${user.user_id }" onclick="return confirm('Are You sure you want to DEACTIVATE ')">DEACTIVATE</a></td>--%>
-          <%--</c:when>--%>
-          <%--<c:otherwise>--%>
-            <%--<td><a href="/activate?id=${user.user_id }" onclick="return confirm('Are You sure you want to ACTIVATE ')">ACTIVATE</a></td>--%>
-          <%--</c:otherwise>--%>
-        <%--</c:choose>--%>
       </tr>
     </c:forEach>
 

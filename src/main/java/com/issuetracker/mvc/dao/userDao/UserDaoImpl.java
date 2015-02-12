@@ -76,7 +76,7 @@ public class UserDaoImpl implements UserDao{
     @Override
     public List<User> getUserList() {
         List userList=new ArrayList();
-        String sql="select * from USER";
+        String sql="select * from user";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
@@ -86,7 +86,7 @@ public class UserDaoImpl implements UserDao{
     public List<User> getUserActiveList() {
         String status=UserStatus.ACTIVE.toString();
         List userList=new ArrayList();
-        String sql="select * from USER where status='"+status+"'";
+        String sql="select * from user where status='"+status+"' AND role='USER'";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
