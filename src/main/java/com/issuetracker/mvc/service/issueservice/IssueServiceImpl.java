@@ -15,8 +15,8 @@ import java.util.List;
 @Transactional
 public class IssueServiceImpl implements IssueService {
 
-    @Autowired
-    IssueDao issueDao;
+@Autowired
+IssueDao issueDao;
 
     @Override
     public int insertData(IssueModel user) {

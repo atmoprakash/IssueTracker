@@ -38,7 +38,7 @@ public class IssueDaoImpl implements IssueDao {
     @Override
     public int insertData(final IssueModel user) {
         KeyHolder keyHolder=new GeneratedKeyHolder();
-        final String sql="Insert into issue_tracker (issuename,servicename,issuedate,customername,createdby,status)"+ "values(?,?,?,?,?,?)";
+    final String sql="Insert into issue_tracker (issuename,servicename,issuedate,customername,createdby,status)"+ "values(?,?,?,?,?,?)";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -58,12 +58,12 @@ public class IssueDaoImpl implements IssueDao {
             }
         },keyHolder);
         return keyHolder.getKey().intValue();
-        // jdbcTemplate.update(sql,new Object[]{user.getIssuename(),user.getServicename(),currentTime,user.getCustomername(),created_by, EventStatus.NEWISSUE.toString()});
+       // jdbcTemplate.update(sql,new Object[]{user.getIssuename(),user.getServicename(),currentTime,user.getCustomername(),created_by, EventStatus.NEWISSUE.toString()});
     }
 
     @Override
     public void updateData(IssueModel user) {
-        String sql="update issue_tracker set issuename=?,servicename=?,issuedate=?,customername=?,createdby=? where issue_tracker_id=?";
+    String sql="update issue_tracker set issuename=?,servicename=?,issuedate=?,customername=?,createdby=? where issue_tracker_id=?";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -80,7 +80,7 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public IssueModel getUser(Integer id) {
-        List<IssueModel> userList=new ArrayList<IssueModel>();
+    List<IssueModel> userList=new ArrayList<IssueModel>();
         String sql="select * from issue_tracker where issue_tracker_id=" +id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new IssueRowMapper());
@@ -112,18 +112,18 @@ public class IssueDaoImpl implements IssueDao {
 
     @Override
     public int insertRecord(final int tracker_id) {
-        KeyHolder keyHolder=new GeneratedKeyHolder();
+KeyHolder keyHolder=new GeneratedKeyHolder();
         final java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        final String currentTime = sdf.format(dt);
-        final Integer solve=0;
+      final String currentTime = sdf.format(dt);
+      final Integer solve=0;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         final String sql="insert into issue_event(issue_tracker_id,assigned_date,solve)values(?,?,?)";
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setInt(1,tracker_id);
+              ps.setInt(1,tracker_id);
                 ps.setString(2, currentTime);
                 ps.setInt(3,solve);
 
@@ -131,7 +131,7 @@ public class IssueDaoImpl implements IssueDao {
             }
         },keyHolder);
         return keyHolder.getKey().intValue();
-        // jdbcTemplate.update(sql,new Object[]{tracker_id,currentTime,solve});
+       // jdbcTemplate.update(sql,new Object[]{tracker_id,currentTime,solve});
 
     }
 

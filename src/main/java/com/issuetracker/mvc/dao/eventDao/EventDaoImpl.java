@@ -1,15 +1,19 @@
 package com.issuetracker.mvc.dao.eventDao;
 
 
+import com.issuetracker.mvc.model.AssignEvent;
 import com.issuetracker.mvc.model.IssueModel;
+import com.issuetracker.mvc.rowmapper.EventIdRowMapper;
 import com.issuetracker.mvc.rowmapper.EventRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +39,12 @@ public class EventDaoImpl implements EventDao {
     @Override
     public void updateUserId(final Integer user_id, final Integer issue_id ) {
 
-        final String sql="update issue_event set user_id=? where issue_tracker_id=?";
+         final String sql="update issue_event set user_id=? where issue_tracker_id=?";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
 
-        jdbcTemplate.update(sql,new Object[]{user_id,issue_id});
+      jdbcTemplate.update(sql,new Object[]{user_id,issue_id});
 
-    }
+        }
 
     @Override
     public void updateTransferData(Integer user_id, Integer event_id) {
@@ -56,8 +60,8 @@ public class EventDaoImpl implements EventDao {
 
         String query="select issue_event_id from issue_event where issue_tracker_id=?";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
-        //return jdbcTemplate.query(query,new EventIdRowMapper()).get(0).getIssue_event_id();
-        Integer id=(Integer) jdbcTemplate.queryForObject(query, new Object[]{event_id}, Integer.class);
+       //return jdbcTemplate.query(query,new EventIdRowMapper()).get(0).getIssue_event_id();
+       Integer id=(Integer) jdbcTemplate.queryForObject(query, new Object[]{event_id}, Integer.class);
         return id;
     }
 
@@ -68,7 +72,7 @@ public class EventDaoImpl implements EventDao {
         String remarks="Assigned";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
 
-        jdbcTemplate.update(query, new Object[]{event_id, user_name, date, remarks});
+       jdbcTemplate.update(query, new Object[]{event_id, user_name, date, remarks});
 
 
     }

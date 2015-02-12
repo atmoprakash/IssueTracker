@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,10 +25,9 @@ public class ShowUserToTransfer {
     @RequestMapping(value = "/showUserToTransferIssue",method = RequestMethod.GET)
     public ModelAndView showUserToAssignIssue(@RequestParam Integer event_id,@RequestParam String issue_date, HttpServletRequest request, HttpSession session,Model model){
         session.setAttribute("event_id",event_id);
-        //session.setAttribute("assignedDate",assigned_date);
+        session.setAttribute("assignedDate",issue_date);
         model.addAttribute("asignDate",issue_date);
-        User us=(User) session.getAttribute("result");
-        List<User> userList = userService.getUserList(us.getUser_id());
+        List<User> userList = userService.getUserActiveList();
         return new ModelAndView("showUserToTransferIssue", "userList", userList);
 
     }

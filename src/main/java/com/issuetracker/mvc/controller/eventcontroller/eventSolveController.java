@@ -23,19 +23,21 @@ public class eventSolveController {
     @Autowired
     IssueService issueService;
     @RequestMapping("/solve")
-    public String eventSolve(@RequestParam int event_id ,HttpSession session)
+    public String eventSolve(@RequestParam int event_id ,@RequestParam String i_d,HttpSession session)
     {
      String name=(String)session.getAttribute("userName");
         User name1= (User) session.getAttribute("result");
        AssignEvent issue_id= eventRecordService.getIssueTrackerId(event_id);
-        List<EventRecord> eventRecord=eventRecordService.checkEventId(event_id);
-        if(eventRecord.isEmpty()) {
-         eventRecordService.insertSelfEventRecord(event_id, name1.getName());
+        List<String> remarks=eventRecordService.checkEventId(event_id);
+        if(remarks.contains("TRANSFER")) {
+            eventRecordService.update(event_id, name,i_d);
             issueService.updateEventStatusSolved(issue_id.getIssue_tracker_id());
         }
         else {
-            eventRecordService.update(event_id, name);
+            eventRecordService.insertSelfEventRecord(event_id, name1.getName(),i_d);
             issueService.updateEventStatusSolved(issue_id.getIssue_tracker_id());
+
+
         }
         eventRecordService.makeSolvedOne(event_id);
 

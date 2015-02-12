@@ -21,7 +21,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void updateUserId(Integer user_id, Integer issue_id) {
-        eventDao.updateUserId(user_id,issue_id);
+       eventDao.updateUserId(user_id,issue_id);
     }
 
     @Override

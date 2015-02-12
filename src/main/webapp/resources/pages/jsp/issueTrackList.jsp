@@ -87,8 +87,7 @@
       <td class="heading">Issue Assigned To</td>
       <td class="heading">Issue Transfer To</td>
       <td class="heading">Issue Created-Date</td>
-      <td class="heading">Issue Transfered-Date</td>
-      <td class="heading">Issue Solve Date</td>
+      <td class="heading">Issue Action Date</td>
       <td class="heading">Remarks</td>
     </tr>
 <c:forEach var="issueTrack" items="${issueList}">
@@ -98,8 +97,7 @@
     <td>${issueTrack.issue_assigned_to}</td>
     <td>${issueTrack.issue_transfer_to}</td>
     <td>${issueTrack.event_created_date}</td>
-    <td>${issueTrack.event_transfered_date}</td>
-    <td>${issueTrack.event_solve_date}</td>
+    <td>${issueTrack.event_action_date}</td>
     <td>${issueTrack.remarks}</td>
   </tr>
   </c:forEach>

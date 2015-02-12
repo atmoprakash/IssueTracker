@@ -55,5 +55,10 @@ public class UserServiceImpl implements UserService{
         userDao.activeData(id);
     }
 
+    @Override
+    public String getUserNamebyId(Integer id) {
+        return userDao.getUserNamebyId(id);
+    }
+
 
 }

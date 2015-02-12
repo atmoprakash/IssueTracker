@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,18 +27,20 @@ public class HomeUserController {
     EventService eventService;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView all(@ModelAttribute("username") User user, ModelMap model, HttpSession session) throws SQLException, ClassNotFoundException {
+    public ModelAndView all(@ModelAttribute("username") User user, ModelMap model, HttpServletRequest request, HttpSession session) throws SQLException, ClassNotFoundException {
 
 
         if (session.getAttribute("result") != null) {
             User us=(User)session.getAttribute("result");
+
             String name=us.getUsername();
-                List<User> userList = userService.getUserList(us.getUser_id());
-                String username=us.getUsername();
-                 model.addAttribute("name1",username);
-                model.addAttribute("name",name);
-                model.addAttribute("role",us.getRole());
-                return new ModelAndView("welcome", "username", userList);
+                List<User> userList = userService.getUserList();
+
+                    model.addAttribute("name",name);
+
+              return new ModelAndView("welcome", "username", userList);
+
+
             }
             else{
                 return new ModelAndView("login");

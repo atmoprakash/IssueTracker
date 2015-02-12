@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,37 +17,30 @@ import java.util.List;
  */
 @Repository
 public class UserDaoImpl implements UserDao{
-
     @Autowired
     DataSource dataSource;
 
     @Override
-    public void insertData(User user,String name) {
+    public void insertData(User user) {
         String sql="Insert into user(name,username,password,created_date,created_by,status)"+ "values(?,?,?,?,?,?)";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//
-        jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),sdf.format(dt),name,UserStatus.ACTIVE.toString()});
+        String currentTime = sdf.format(dt);
+        String created_by="rewat";
+        jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),currentTime,created_by,UserStatus.ACTIVE.toString()});
 
     }
 
     @Override
-    public boolean updateData(User user) {
-        boolean res=false;
+    public void updateData(User user) {
         String sql="update user set name=?,username=?,password=?,created_date=? where user_id=?";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String updateTime = sdf.format(dt);
-        Integer a=jdbcTemplate.update(sql, new Object[]{user.getName(), user.getUsername(), user.getPassword(), updateTime, user.user_id});
-        if(a!=0){
-            res=true;
-            return res;
-        }
-        else{
-            return res;
-        }
+        jdbcTemplate.update(sql,new Object[]{user.getName(),user.getUsername(),user.getPassword(),updateTime,user.user_id});
+
     }
 
     @Override
@@ -76,37 +70,36 @@ public class UserDaoImpl implements UserDao{
         String sql="select * from user where user_id=" +id;
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
-        if(userList.isEmpty()){
-            return null;
-        }
-        else {
-            return userList.get(0);
-        }
+        return userList.get(0);
     }
 
     @Override
-    public List<User> getUserList(Integer id) {
+    public List<User> getUserList() {
         List userList=new ArrayList();
-        String sql="select * from user WHERE user_id!="+id;
+        String sql="select * from USER";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
     }
 
     @Override
-    public List<User> getUserActiveList(Integer id) {
+    public List<User> getUserActiveList() {
         String status=UserStatus.ACTIVE.toString();
         List userList=new ArrayList();
-        String sql="select * from user where status='"+status+"' AND user_id!="+id;
+        String sql="select * from USER where status='"+status+"'";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
         userList=jdbcTemplate.query(sql,new UserRowMapper());
         return userList;
     }
 
     @Override
-    public void activeData(Integer id) {
-        String sql = "UPDATE user set status='"+UserStatus.ACTIVE+"' WHERE user_id="+id;
+    public String getUserNamebyId(Integer id) {
+
+        String sql="select name from user where user_id=?";
         JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource);
-        jdbcTemplate.update(sql);
+
+
+   return jdbcTemplate.queryForObject(sql, new Object[]{id}, String.class);
+
     }
 }

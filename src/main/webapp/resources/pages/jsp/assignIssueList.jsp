@@ -101,7 +101,7 @@
       <td>${last.issuedate}</td>
       <td>${last.customername}</td>
       <td>${last.createdby}</td>
-      <td><a href="/showUserToAssignIssue?issue_tracker_id=${last.issue_tracker_id}">Assign issue to User</a></td>
+      <td><a href="/showUserToAssignIssue?issue_tracker_id=${last.issue_tracker_id}&ad=${last.issuedate}">Assign issue to User</a></td>
     </tr>
     <%--<%! int sn=2 ;%>--%>
     <c:set var="count" value="2" scope="page"/>

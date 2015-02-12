@@ -31,9 +31,11 @@
       text-align: center;
     }
     .heading {
+      font-size: 18px;
       color: white;
+      font: bold;
       background-color: orange;
-      text-align: center;
+      border: thick;
     }
   </style>
 </head>
@@ -70,7 +72,7 @@
         <input type="text" class="form-control col-lg-8" placeholder="Search">
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/eventHome">Home[ Welcome ${name}]</a></li>
+        <li><a href="/eventHome">Home</a></li>
         <li><a href="/logout">Logout</a></li>
 
         </li>
@@ -79,17 +81,25 @@
   </div>
 
   <b>All Issues Registered </b>
+
+
+
+
+
   <table border="1">
-    <thead>
-      <th class="heading">Issue Registered Id</th>
-      <th class="heading">Issue Name</th>
-      <th class="heading">Service Name</th>
-      <th class="heading">Issue Date</th>
-      <th class="heading">Customer Name</td>
-      <th class="heading">Created By</th>
-      <th class="heading">Status</th>
-      <th class="heading">Issue History</th>
-    </thead>
+    <tr>
+      <td class="heading">Issue Registered Id</td>
+      <td class="heading">Issue Name</td>
+      <td class="heading">Service Name</td>
+      <td class="heading">Issue Date</td>
+      <td class="heading">Customer Name</td>
+      <td class="heading">Created By</td>
+      <td class="heading">Status</td>
+      <td class="heading">Issue History</td>
+
+
+
+    </tr>
     <c:forEach var="user" items="${issueList}">
       <tr>
         <td>${user.issue_tracker_id}</td>
@@ -100,11 +110,17 @@
         <td>${user.createdby}</td>
         <c:choose>
           <c:when test="${user.status=='NEWISSUE'}">
-            <td><a href="showUserToAssignIssue?issue_tracker_id=${user.issue_tracker_id}">New Issue.Assign Issue</a> </td>
-            <td><a href="#" onclick="return confirm('Not Assigned To any USER..So,No history Yet For this issue')">View Issue History</a></td>
+            <td><a href="/showUserToAssignIssue?issue_tracker_id=${user.issue_tracker_id}&ad=${user.issuedate}">NewIssue</a></td>
           </c:when>
           <c:otherwise>
-        <td>${user.status}</td>
+            <td>${user.status}</td>
+          </c:otherwise>
+        </c:choose>
+        <c:choose>
+          <c:when test="${user.status=='NEWISSUE'&& remark.remarks=='Transfer'}">
+            <td>null</td>
+          </c:when>
+          <c:otherwise>
             <td><a href="viewHistory?id=${user.issue_tracker_id}">View Issue History</a></td>
           </c:otherwise>
         </c:choose>

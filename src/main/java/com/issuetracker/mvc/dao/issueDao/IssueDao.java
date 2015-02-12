@@ -10,18 +10,15 @@ import java.util.List;
  */
 public interface IssueDao {
     public int insertData(IssueModel user);
-
     public void updateData(IssueModel user);
-
     public void deleteData(Integer id);
-
     public IssueModel getUser(Integer id);
-
     public List<IssueModel> getUserList();
-
     public void updateStatus(Integer id);
-
     public void updateEventStatusSolved(Integer id);
-
     public int insertRecord(int tracker_id);
+
+
+
+
 }

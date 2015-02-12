@@ -85,24 +85,24 @@ public class EventRecordDaoImpl implements EventRecordDao {
 
     @Override
     public List<String> checkEventId(Integer id) {
-        // List checkEventList = new ArrayList();
+       // List checkEventList = new ArrayList();
         String sql = "Select remarks from event_record where issue_event_id="+id;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        List<String> remarks=  jdbcTemplate.query(sql, new RowMapper<String>() {
-            @Override
-            public String mapRow(ResultSet resultSet, int i) throws SQLException {
-                return resultSet.getString(1);
-            }
-        });
-        return remarks;
+      List<String> remarks=  jdbcTemplate.query(sql, new RowMapper<String>() {
+          @Override
+          public String mapRow(ResultSet resultSet, int i) throws SQLException {
+              return resultSet.getString(1);
+          }
+      });
+              return remarks;
     }
 
     @Override
     public List<EventRecord> getHistory(List<Integer> id) {
         List seeHistory = new ArrayList();
-        // List<EventRecord> eventRecords=new ArrayList<EventRecord>();
-        //  List eventrocord=new ArrayList();
-        for(int i=0;i<id.size();i++){
+      // List<EventRecord> eventRecords=new ArrayList<EventRecord>();
+     //  List eventrocord=new ArrayList();
+       for(int i=0;i<id.size();i++){
             String sql = "SELECT t.issuename,t.servicename,r.issue_assigned_to,r.issue_transfer_to,r.event_created_date,r.event_action_date,r.remarks FROM event_record r,issue_event e,issue_tracker t\n" +
                     "WHERE e.issue_event_id=r.issue_event_id  AND e.issue_tracker_id=t.issue_tracker_id and r.issue_event_id="+id.get(i);
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -115,7 +115,7 @@ public class EventRecordDaoImpl implements EventRecordDao {
 
     @Override
     public List<Integer> getEventId(Integer id) {
-        // List<AssignEvent> getEventDetail=new ArrayList<AssignEvent>();
+       // List<AssignEvent> getEventDetail=new ArrayList<AssignEvent>();
 
         String sql = "SELECT issue_event_id FROM issue_event WHERE issue_tracker_id=" + id;
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -136,10 +136,10 @@ public class EventRecordDaoImpl implements EventRecordDao {
 
     @Override
     public AssignEvent getIssueTrackerId(Integer id) {
-        String sql="select issue_tracker_id from issue_event where issue_event_id=:event_id";
+       String sql="select issue_tracker_id from issue_event where issue_event_id=:event_id";
         NamedParameterJdbcTemplate namedParameterJdbcTemplate=new NamedParameterJdbcTemplate(dataSource);
         SqlParameterSource sqlParameterSource=new MapSqlParameterSource("event_id",id);
-        return  namedParameterJdbcTemplate.queryForObject(sql, sqlParameterSource, BeanPropertyRowMapper.newInstance(AssignEvent.class));
+            return  namedParameterJdbcTemplate.queryForObject(sql, sqlParameterSource, BeanPropertyRowMapper.newInstance(AssignEvent.class));
 
 
     }

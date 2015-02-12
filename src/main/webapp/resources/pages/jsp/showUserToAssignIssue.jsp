@@ -67,9 +67,9 @@
         <%--</ul>--%>
         <%--</li>--%>
       </ul>
-      <form class="navbar-form navbar-left">
+      <form class="navbar-form navbar-left" action="/assignEvent" method="get">
         <input type="text" class="form-control col-lg-8" placeholder="Search">
-      </form>
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/eventHome">Home</a></li>
         <li><a href="/logout">Logout</a></li>
@@ -99,13 +99,24 @@
         <td>${user.user_id}</td>
         <td>${user.name}</td>
         <td>${user.username}</td>
-        <td><a href="assignEvent?user_id=${user.user_id}&username=${user.name}">Select</a></td>
+      <%-- <td><a href="assignEvent?user_id=${user.user_id}&username=${user.name}">Select</a></td>--%>
+        <td><input type="radio" name="id" value="${user.user_id}"></td>
+
 
       </tr>
     </c:forEach>
-    <tr><td colspan="7"><a href="registerIssue">Add New Issue</a></td></tr>
-  </table>
+   <%-- <tr><td colspan="4"><a href="registerIssue">Add New Issue</a></td> --%>
+    <td colspan="3"><input type="submit" value="Submit">
 
-</center>
+    </td>
+
+    </tr>
+
+
+  </table>
+  </center>
+  </form>
+
+
 </body>
 </html>

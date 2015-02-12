@@ -21,21 +21,13 @@ public class UpdateUserController {
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     public ModelAndView updateGetIssue(@RequestParam Integer id){
        User user=userService.getUser(id);
-        if(user == null){
-            return new ModelAndView("adminhome","","");
-        }
        return new ModelAndView("update","updateUserValue",user);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String updateIssue(@ModelAttribute User user){
-       boolean b= userService.updateData(user);
-        if(b==true) {
-            return "redirect:/home";
-        }
-        else {
-            return "adminhome";
-        }
+        userService.updateData(user);
+        return "redirect:/home";
 }
 
 

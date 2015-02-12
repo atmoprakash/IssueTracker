@@ -30,16 +30,16 @@ public class AssignEventController {
     public String assignIssueUser(HttpServletRequest request, HttpSession session,@RequestParam Integer id) {
         Integer issue_id = (Integer) session.getAttribute("issue_id");
         if (id!= null)
-        {
+            {
 
-            eventService.updateUserId(id, issue_id);
+               eventService.updateUserId(id, issue_id);
 
-            String username= userService.getUserNamebyId(id);
-            Integer event_id= eventService.getEventId(issue_id);
-            String assignedDate=  (String ) session.getAttribute("assignedDate");
-            eventRecordService.insertEventRecord(username,assignedDate,event_id);
+             String username= userService.getUserNamebyId(id);
+             Integer event_id= eventService.getEventId(issue_id);
+             String assignedDate=  (String ) session.getAttribute("assignedDate");
+          eventRecordService.insertEventRecord(username,assignedDate,event_id);
 
-        }
+            }
 
         issueService.updateStatus(issue_id);
 
